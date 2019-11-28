@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package crypto;
+import "protos/utils.proto";
+
+message Logins {
+    required string name = 1;
+}
+
+extend Option
+{
+    optional Logins LOGINS = 10;
+}

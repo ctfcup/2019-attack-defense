@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package crypto;
+
+message Qubit {
+  required float real = 1;
+  required float image = 2;
+}
+
+enum Gate {
+  PLUS = 0;
+  CROSS = 1;
+}
+
+message Option
+{
+  extensions 10 to max;
+}
