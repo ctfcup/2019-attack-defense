@@ -2,9 +2,11 @@ syntax = "proto2";
 
 package crypto;
 
-message Qubit {
-  required float real = 1;
-  required float image = 2;
+enum Qubit {
+  QUBIT_0 = 0;
+  QUBIT_45 = 1;
+  QUBIT_90 = 2;
+  QUBIT_135 = 3;
 }
 
 enum Gate {

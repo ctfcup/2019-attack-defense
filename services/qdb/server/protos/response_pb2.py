@@ -19,7 +19,7 @@ import protos.utils_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protos/response.proto',
   package='crypto',
-  serialized_pb=_b('\n\x15protos/response.proto\x12\x06\x63rypto\x1a\x12protos/utils.proto\"G\n\x08Response\x12\x1b\n\x05gates\x18\x02 \x03(\x0e\x32\x0c.crypto.Gate\x12\x1e\n\x06option\x18\x03 \x02(\x0b\x32\x0e.crypto.Option')
+  serialized_pb=_b('\n\x15protos/response.proto\x12\x06\x63rypto\x1a\x12protos/utils.proto\"f\n\x08Response\x12\x1d\n\x06qubits\x18\x01 \x03(\x0e\x32\r.crypto.Qubit\x12\x1b\n\x05gates\x18\x02 \x03(\x0e\x32\x0c.crypto.Gate\x12\x1e\n\x06option\x18\x03 \x02(\x0b\x32\x0e.crypto.Option')
   ,
   dependencies=[protos.utils_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -35,14 +35,21 @@ _RESPONSE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='gates', full_name='crypto.Response.gates', index=0,
+      name='qubits', full_name='crypto.Response.qubits', index=0,
+      number=1, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='gates', full_name='crypto.Response.gates', index=1,
       number=2, type=14, cpp_type=8, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='option', full_name='crypto.Response.option', index=1,
+      name='option', full_name='crypto.Response.option', index=2,
       number=3, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -60,9 +67,10 @@ _RESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=53,
-  serialized_end=124,
+  serialized_end=155,
 )
 
+_RESPONSE.fields_by_name['qubits'].enum_type = protos.utils_pb2._QUBIT
 _RESPONSE.fields_by_name['gates'].enum_type = protos.utils_pb2._GATE
 _RESPONSE.fields_by_name['option'].message_type = protos.utils_pb2._OPTION
 DESCRIPTOR.message_types_by_name['Response'] = _RESPONSE

@@ -19,10 +19,41 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protos/utils.proto',
   package='crypto',
-  serialized_pb=_b('\n\x12protos/utils.proto\x12\x06\x63rypto\"$\n\x05Qubit\x12\x0c\n\x04real\x18\x01 \x02(\x02\x12\r\n\x05image\x18\x02 \x02(\x02\"\x12\n\x06Option*\x08\x08\n\x10\x80\x80\x80\x80\x02*\x1b\n\x04Gate\x12\x08\n\x04PLUS\x10\x00\x12\t\n\x05\x43ROSS\x10\x01')
+  serialized_pb=_b('\n\x12protos/utils.proto\x12\x06\x63rypto\"\x12\n\x06Option*\x08\x08\n\x10\x80\x80\x80\x80\x02*?\n\x05Qubit\x12\x0b\n\x07QUBIT_0\x10\x00\x12\x0c\n\x08QUBIT_45\x10\x01\x12\x0c\n\x08QUBIT_90\x10\x02\x12\r\n\tQUBIT_135\x10\x03*\x1b\n\x04Gate\x12\x08\n\x04PLUS\x10\x00\x12\t\n\x05\x43ROSS\x10\x01')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
+_QUBIT = _descriptor.EnumDescriptor(
+  name='Qubit',
+  full_name='crypto.Qubit',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='QUBIT_0', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='QUBIT_45', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='QUBIT_90', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='QUBIT_135', index=3, number=3,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=50,
+  serialized_end=113,
+)
+_sym_db.RegisterEnumDescriptor(_QUBIT)
+
+Qubit = enum_type_wrapper.EnumTypeWrapper(_QUBIT)
 _GATE = _descriptor.EnumDescriptor(
   name='Gate',
   full_name='crypto.Gate',
@@ -40,52 +71,19 @@ _GATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=88,
-  serialized_end=115,
+  serialized_start=115,
+  serialized_end=142,
 )
 _sym_db.RegisterEnumDescriptor(_GATE)
 
 Gate = enum_type_wrapper.EnumTypeWrapper(_GATE)
+QUBIT_0 = 0
+QUBIT_45 = 1
+QUBIT_90 = 2
+QUBIT_135 = 3
 PLUS = 0
 CROSS = 1
 
-
-
-_QUBIT = _descriptor.Descriptor(
-  name='Qubit',
-  full_name='crypto.Qubit',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='real', full_name='crypto.Qubit.real', index=0,
-      number=1, type=2, cpp_type=6, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='image', full_name='crypto.Qubit.image', index=1,
-      number=2, type=2, cpp_type=6, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=30,
-  serialized_end=66,
-)
 
 
 _OPTION = _descriptor.Descriptor(
@@ -106,20 +104,13 @@ _OPTION = _descriptor.Descriptor(
   extension_ranges=[(10, 536870912), ],
   oneofs=[
   ],
-  serialized_start=68,
-  serialized_end=86,
+  serialized_start=30,
+  serialized_end=48,
 )
 
-DESCRIPTOR.message_types_by_name['Qubit'] = _QUBIT
 DESCRIPTOR.message_types_by_name['Option'] = _OPTION
+DESCRIPTOR.enum_types_by_name['Qubit'] = _QUBIT
 DESCRIPTOR.enum_types_by_name['Gate'] = _GATE
-
-Qubit = _reflection.GeneratedProtocolMessageType('Qubit', (_message.Message,), dict(
-  DESCRIPTOR = _QUBIT,
-  __module__ = 'protos.utils_pb2'
-  # @@protoc_insertion_point(class_scope:crypto.Qubit)
-  ))
-_sym_db.RegisterMessage(Qubit)
 
 Option = _reflection.GeneratedProtocolMessageType('Option', (_message.Message,), dict(
   DESCRIPTOR = _OPTION,
