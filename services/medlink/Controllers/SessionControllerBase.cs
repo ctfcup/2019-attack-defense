@@ -7,13 +7,13 @@ namespace medlink.Controllers
 {
     public abstract class SessionControllerBase<TValue> : ControllerBase
     {
-        private readonly ISessionProvider _sessionProvider;
+        private readonly ISessions _sessions;
         private readonly ISettings _settings;
 
-        public SessionControllerBase(ISettings settings, ISessionProvider sessionProvider)
+        public SessionControllerBase(ISettings settings, ISessions sessions)
         {
             _settings = settings;
-            _sessionProvider = sessionProvider;
+            _sessions = sessions;
         }
 
         protected string Session => Request.Cookies[_settings.SessionKey];
@@ -25,7 +25,7 @@ namespace medlink.Controllers
 
         protected async Task<TValue> HandleAuthorizedRequest(Func<string, Task<TValue>> handler)
         {
-            if (!IsAuthorized() || !_sessionProvider.CheckSession(Session, out var login))
+            if (!IsAuthorized() || !_sessions.TryGet(Session, out var login))
             {
                 Response.StatusCode = 403;
                 return default;
@@ -36,7 +36,7 @@ namespace medlink.Controllers
 
         protected async Task HandleAuthorizedRequest(Func<string, Task> handler)
         {
-            if (!IsAuthorized() || !_sessionProvider.CheckSession(Session, out var login))
+            if (!IsAuthorized() || !_sessions.TryGet(Session, out var login))
             {
                 Response.StatusCode = 403;
                 return;

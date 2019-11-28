@@ -13,9 +13,9 @@ namespace medlink.Controllers
         private readonly IBodyTelemetryStorage _bodyTelemetryStorage;
         private readonly ISerializer _serializer;
 
-        public TelemetryController(ISettings settings, ISessionProvider sessionProvider,
+        public TelemetryController(ISettings settings, ISessions sessions,
             IBodyTelemetryStorage bodyTelemetryStorage, ISerializer serializer) : base(settings,
-            sessionProvider)
+            sessions)
         {
             _bodyTelemetryStorage = bodyTelemetryStorage;
             _serializer = serializer;

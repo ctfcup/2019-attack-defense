@@ -41,13 +41,13 @@ namespace medlink
             builder.RegisterInstance(new Settings()).As<ISettings>();
             builder.RegisterType<Serializer>().As<ISerializer>();
             builder.RegisterInstance(LogManager.GetLogger(GetType())).As<ILog>();
-            builder.RegisterType<SessionProvider>().As<ISessionProvider>().SingleInstance();
-            builder.RegisterType<AuthProvider>().As<IAuthProvider>().SingleInstance();
+            builder.RegisterType<Sessions>().As<ISessions>().SingleInstance();
+            builder.RegisterType<Users>().As<IUsers>().SingleInstance();
             builder.RegisterType<FileDumper>().As<IFileDumper>().SingleInstance();
             builder.RegisterType<BodyTelemetryStorage>().As<IBodyTelemetryStorage>().SingleInstance();
             builder.RegisterType<HealthChecker>().As<IHealthChecker>().SingleInstance();
-            builder.RegisterType<BodyModelsStorage>().As<IBodyModelsStorage>().SingleInstance();
-            builder.RegisterType<VendorTokenSource>().As<IVendorTokenSource>().SingleInstance();
+            builder.RegisterType<BodyDiagnosticStorage>().As<IBodyModelsStorage>().SingleInstance();
+            builder.RegisterType<VendorTokens>().As<IVendorTokens>().SingleInstance();
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

@@ -1,5 +1,4 @@
-﻿using System.IO;
-using medlink.Helpers;
+﻿using medlink.Helpers;
 using medlink.Storage.Models;
 
 namespace medlink.Storage

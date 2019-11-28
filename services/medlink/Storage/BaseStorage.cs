@@ -19,29 +19,13 @@ namespace medlink.Storage
 
         protected abstract string Folder { get; }
 
-        public async Task StartCleanup()
-        {
-            while (true)
-            {
-                await Task.Delay(TimeSpan.FromMinutes(1));
-                string[] allfiles = Directory.GetFiles(Folder, "*", SearchOption.AllDirectories);
-                foreach (var file in allfiles)
-                {
-                    if (DateTime.UtcNow - File.GetCreationTime(file) >= Settings.Ttl)
-                    {
-                        File.Delete(file);
-                    }
-                }
-            }
-        }
-        
         public async Task Add(TValue info, string filename)
         {
             var path = GetPath(filename);
             var folder = Path.GetDirectoryName(path);
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
-            
+
             await File.WriteAllTextAsync(path, _serializer.Serialize(info));
         }
 
@@ -54,6 +38,18 @@ namespace medlink.Storage
         public bool Exist(string filename)
         {
             return File.Exists(GetPath(filename));
+        }
+
+        public async Task StartCleanup()
+        {
+            while (true)
+            {
+                await Task.Delay(TimeSpan.FromMinutes(1));
+                var allfiles = Directory.GetFiles(Folder, "*", SearchOption.AllDirectories);
+                foreach (var file in allfiles)
+                    if (DateTime.UtcNow - File.GetCreationTime(file) >= Settings.Ttl)
+                        File.Delete(file);
+            }
         }
 
         private string GetPath(string name)

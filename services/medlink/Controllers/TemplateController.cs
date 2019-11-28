@@ -12,9 +12,9 @@ namespace medlink.Controllers
     {
         private readonly IBodyModelsStorage _bodyModelsStorage;
 
-        public TemplateController(ISettings settings, ISessionProvider sessionProvider,
+        public TemplateController(ISettings settings, ISessions sessions,
             IBodyModelsStorage bodyModelsStorage) : base(settings,
-            sessionProvider)
+            sessions)
         {
             _bodyModelsStorage = bodyModelsStorage;
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using medlink.Helpers;
 using medlink.Storage;
@@ -15,44 +14,49 @@ namespace medlink.Controllers
     {
         private readonly IBodyModelsStorage _bodyModelsStorage;
         private readonly ISerializer _serializer;
-        private readonly IVendorTokenSource _vendorTokenSource;
+        private readonly IVendorTokens _vendorTokens;
 
+        public BodyModelController(ISettings settings, ISessions sessions,
+            IBodyModelsStorage bodyModelsStorage, ISerializer serializer, IVendorTokens vendorTokens) : base(
+            settings, sessions)
+        {
+            _bodyModelsStorage = bodyModelsStorage;
+            _serializer = serializer;
+            _vendorTokens = vendorTokens;
+        }
 
         [HttpPut]
         public async Task AddDiagnosticInfo()
         {
-            Request.Query.TryGetValue("vendorToken", out var token);
+            Request.Query.TryGetValue("vendorToken", out var vendorToken);
             var content = await Request.Body.ReadToEndAsync();
             Console.WriteLine(content);
             var hardwareDiagnosticInfo = _serializer.Deserialize<BodyDiagnosticInfo>(content);
             await HandleAuthorizedRequest(async login =>
             {
-                if (!_vendorTokenSource.CheckToken(login, token))
-                {
+                if (!_vendorTokens.TryGet(login, out var vToken) || !vToken.Equals(vendorToken))
                     Response.StatusCode = 403;
-                }
 
                 await _bodyModelsStorage.Add(hardwareDiagnosticInfo,
                     GetPath(login, hardwareDiagnosticInfo.ModelSeries));
             });
         }
-
-
+        
         [HttpGet]
         public async Task<BodyDiagnosticInfo> GetDiagnosticInfo()
         {
             var query = Request.Query;
             query.TryGetValue("modelSeries", out var series);
             query.TryGetValue("vendorToken", out var vendorToken);
-
-
+            
             return await HandleAuthorizedRequest(async login =>
             {
-                if (!_vendorTokenSource.CheckToken(login, vendorToken))
+                if (!_vendorTokens.TryGet(login, out var vToken) || !vToken.Equals(vendorToken))
                 {
                     Response.StatusCode = 403;
                     return null;
                 }
+
                 return await _bodyModelsStorage.Get(GetPath(login, series));
             });
         }
@@ -60,13 +64,6 @@ namespace medlink.Controllers
         private static string GetPath(string login, StringValues series)
         {
             return Path.Combine(login, series);
-        }
-
-        public BodyModelController(ISettings settings, ISessionProvider sessionProvider, IBodyModelsStorage bodyModelsStorage, ISerializer serializer, IVendorTokenSource vendorTokenSource) : base(settings, sessionProvider)
-        {
-            _bodyModelsStorage = bodyModelsStorage;
-            _serializer = serializer;
-            _vendorTokenSource = vendorTokenSource;
         }
     }
 }

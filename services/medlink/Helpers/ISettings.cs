@@ -4,7 +4,7 @@ namespace medlink.Helpers
 {
     public interface ISettings
     {
-        string BodyModelsFolder { get; }
+        string BodyDiagnosticFolder { get; }
         string TelemetryFolder { get; }
         string UserSessionsFolder { get; }
         public string UsersFolder { get; set; }
