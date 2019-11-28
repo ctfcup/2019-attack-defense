@@ -4,14 +4,6 @@ using medlink.Storage;
 
 namespace medlink
 {
-    public interface IFileBasedIndex<TValue, TKey>
-    {
-        void Add(TKey key, TValue value);
-        TValue Get(TKey key);
-        bool Contains(TKey key);
-        bool TryGet(TKey key, out TValue result);
-    }
-
     public abstract class FileBasedIndex<TValue, TKey> : IFileBasedIndex<TValue, TKey>
     {
         private readonly IFileDumper _fileDumper;
@@ -55,7 +47,11 @@ namespace medlink
 
         public bool TryGet(TKey key, out TValue result)
         {
-            return Index.TryGetValue(key, out result);
+            var getResult = Index.TryGetValue(key, out var value);
+            result = value;
+            return getResult;
         }
+
+        public int Count => Index.Count;
     }
 }

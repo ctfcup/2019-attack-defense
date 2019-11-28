@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using medlink.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace medlink.Controllers
@@ -9,15 +11,15 @@ namespace medlink.Controllers
     [Route("api/[controller]")]
     public class SignInController : ControllerBase
     {
-        private readonly IUsers _users;
+        private readonly IPasswords _passwords;
         private readonly ISessions _sessions;
         private readonly IVendorTokens _vendorTokens;
         private readonly ISessionSource _sessionSource;
 
-        public SignInController(IUsers users, ISessions sessions,
+        public SignInController(IPasswords passwords, ISessions sessions,
             IVendorTokens vendorTokens, ISessionSource sessionSource)
         {
-            _users = users;
+            _passwords = passwords;
             _sessions = sessions;
             _vendorTokens = vendorTokens;
             _sessionSource = sessionSource;
@@ -33,8 +35,13 @@ namespace medlink.Controllers
             if (AddUserOrCheckPass(login, password))
             {
                 if (formCollection.TryGetValue("vendorToken", out var token))
-                    _vendorTokens.Add(login, token);
+                    _vendorTokens.Add(login, new VendorInfo
+                    {
+                        Token = token,
+                        ModelSeries = new HashSet<string>()
+                    });
 
+                //TODO: add to active users cache
                 var session = _sessionSource.GetSession();
                 _sessions.Add(session, login);
                 return session;
@@ -45,22 +52,12 @@ namespace medlink.Controllers
         
         public bool AddUserOrCheckPass(string login, string pass)
         {
-            if (_users.Contains(login)) 
-                return _users.Get(login).Equals(GetHash(pass));
+            if (_passwords.Contains(login)) 
+                return _passwords.Get(login).Equals(Utils.GetSha256(pass));
             
-            _users.Add(login, GetHash(pass));
+            _passwords.Add(login, Utils.GetSha256(pass));
             return true;
 
-        }
-
-        private string GetHash(string source)
-        {
-            using (var sha256Hash = SHA256.Create())
-            {
-                var bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(source));
-
-                return Encoding.Default.GetString(bytes);
-            }
         }
     }
 }

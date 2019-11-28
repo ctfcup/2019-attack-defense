@@ -6,6 +6,7 @@ export class BodyModel extends Component {
         super(props);
         this.state = {
             modelSeries:"",
+            familyUuid:"",
             vendorToken: "",
             referenceValues: {},
             addFieldValue: '',
@@ -19,11 +20,11 @@ export class BodyModel extends Component {
     submitForm(e) {
         e.preventDefault();
         this.setState({error: null});
-        fetch('api/bodymodel', {
+        fetch(`api/bodymodel?vendorToken=${this.state.vendorToken}`, {
             method: 'PUT',
             body: JSON.stringify( {
                 ModelSeries: this.state.modelSeries,
-                VendorToken: this.state.vendorToken,
+                bodyFamilyUUID: this.state.familyUuid,
                 ReferenceValues: {...this.state.referenceValues},
             })
         }).then(resp => {
@@ -58,13 +59,20 @@ export class BodyModel extends Component {
     };
 
     render() {
-        const {modelSeries, vendorToken, referenceValues, addFieldValue} = this.state;
+        const {modelSeries, vendorToken, referenceValues, addFieldValue, familyUuid} = this.state;
         return <div className='common-form'>
             <Form onSubmit={this.submitForm} id="bodyModel">
                 <FormGroup row>
                     <Label className="label light-purple" for="modelSeries" sm={3}>Model Series</Label>
                     <Col sm={5}>
                         <Input type="text" name="modelSeries" id="modelSeries" value={modelSeries}
+                               onChange={this.handleChange}/>
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    <Label className="label light-purple" for="familyUuid" sm={3}>Model Family UUID</Label>
+                    <Col sm={5}>
+                        <Input type="text" name="familyUuid" id="familyUuid" value={familyUuid}
                                onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>

@@ -41,8 +41,9 @@ namespace medlink
             builder.RegisterInstance(new Settings()).As<ISettings>();
             builder.RegisterType<Serializer>().As<ISerializer>();
             builder.RegisterInstance(LogManager.GetLogger(GetType())).As<ILog>();
+            builder.RegisterType<SessionSource>().As<ISessionSource>().SingleInstance();
             builder.RegisterType<Sessions>().As<ISessions>().SingleInstance();
-            builder.RegisterType<Users>().As<IUsers>().SingleInstance();
+            builder.RegisterType<PasswordsByUsers>().As<IPasswords>().SingleInstance();
             builder.RegisterType<FileDumper>().As<IFileDumper>().SingleInstance();
             builder.RegisterType<BodyTelemetryStorage>().As<IBodyTelemetryStorage>().SingleInstance();
             builder.RegisterType<HealthChecker>().As<IHealthChecker>().SingleInstance();
@@ -69,7 +70,6 @@ namespace medlink
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

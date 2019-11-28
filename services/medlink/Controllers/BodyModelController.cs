@@ -14,15 +14,15 @@ namespace medlink.Controllers
     {
         private readonly IBodyModelsStorage _bodyModelsStorage;
         private readonly ISerializer _serializer;
-        private readonly IVendorTokens _vendorTokens;
+        private readonly IVendorTokens _vendors;
 
         public BodyModelController(ISettings settings, ISessions sessions,
-            IBodyModelsStorage bodyModelsStorage, ISerializer serializer, IVendorTokens vendorTokens) : base(
+            IBodyModelsStorage bodyModelsStorage, ISerializer serializer, IVendorTokens vendors) : base(
             settings, sessions)
         {
             _bodyModelsStorage = bodyModelsStorage;
             _serializer = serializer;
-            _vendorTokens = vendorTokens;
+            _vendors = vendors;
         }
 
         [HttpPut]
@@ -34,11 +34,22 @@ namespace medlink.Controllers
             var hardwareDiagnosticInfo = _serializer.Deserialize<BodyDiagnosticInfo>(content);
             await HandleAuthorizedRequest(async login =>
             {
-                if (!_vendorTokens.TryGet(login, out var vToken) || !vToken.Equals(vendorToken))
+                if (!_vendors.TryGet(login, out var vendor) ||
+                    !vendor.Token.Equals(vendorToken))
+                {
                     Response.StatusCode = 403;
+                    return;
+                }
 
+                if (_bodyModelsStorage.Contains(hardwareDiagnosticInfo))
+                {
+                    //TODO: Normal conflict
+                    Response.StatusCode = 1111;
+                    return;
+                }
+                
                 await _bodyModelsStorage.Add(hardwareDiagnosticInfo,
-                    GetPath(login, hardwareDiagnosticInfo.ModelSeries));
+                    GetPath(hardwareDiagnosticInfo.ModelSeries, hardwareDiagnosticInfo.Revision));
             });
         }
         
@@ -47,17 +58,20 @@ namespace medlink.Controllers
         {
             var query = Request.Query;
             query.TryGetValue("modelSeries", out var series);
+            query.TryGetValue("revision", out var revision);
             query.TryGetValue("vendorToken", out var vendorToken);
             
             return await HandleAuthorizedRequest(async login =>
             {
-                if (!_vendorTokens.TryGet(login, out var vToken) || !vToken.Equals(vendorToken))
+                if (!_vendors.TryGet(login, out var vendorInfo) ||
+                    !vendorInfo.Token.Equals(vendorToken) || 
+                    !vendorInfo.ModelSeries.Contains(series))
                 {
                     Response.StatusCode = 403;
                     return null;
                 }
 
-                return await _bodyModelsStorage.Get(GetPath(login, series));
+                return await _bodyModelsStorage.Get(GetPath(series, revision));
             });
         }
 

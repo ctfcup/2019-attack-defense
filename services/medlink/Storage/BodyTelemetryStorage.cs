@@ -3,16 +3,11 @@ using medlink.Storage.Models;
 
 namespace medlink.Storage
 {
-    public interface IBodyTelemetryStorage : IBaseStorage<BodyTelemetry>
-    {
-    }
-
     public class BodyTelemetryStorage : BaseStorage<BodyTelemetry>, IBodyTelemetryStorage
     {
-        public BodyTelemetryStorage(ISerializer serializer, ISettings settings) : base(serializer, settings)
+        public BodyTelemetryStorage(ISerializer serializer, ISettings settings) : base(serializer, settings, settings.TelemetryFolder)
         {
         }
 
-        protected override string Folder => Settings.TelemetryFolder;
     }
 }

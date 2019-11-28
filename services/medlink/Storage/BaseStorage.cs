@@ -9,15 +9,16 @@ namespace medlink.Storage
     {
         private readonly ISerializer _serializer;
         protected readonly ISettings Settings;
+        protected readonly string Folder;
 
-        public BaseStorage(ISerializer serializer, ISettings settings)
+        public BaseStorage(ISerializer serializer, ISettings settings, string folder)
         {
             _serializer = serializer;
             Settings = settings;
+            Folder = folder;
             StartCleanup().ConfigureAwait(false);
         }
 
-        protected abstract string Folder { get; }
 
         public async Task Add(TValue info, string filename)
         {
@@ -27,6 +28,7 @@ namespace medlink.Storage
                 Directory.CreateDirectory(folder);
 
             await File.WriteAllTextAsync(path, _serializer.Serialize(info));
+            OnAdd(info, filename);
         }
 
         public async Task<TValue> Get(string filename)
@@ -40,7 +42,11 @@ namespace medlink.Storage
             return File.Exists(GetPath(filename));
         }
 
-        public async Task StartCleanup()
+        protected virtual void OnAdd(TValue info, string filename)
+        {
+        }
+
+        private async Task StartCleanup()
         {
             while (true)
             {

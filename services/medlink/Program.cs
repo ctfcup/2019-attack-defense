@@ -20,7 +20,7 @@ namespace medlink
                 {
                     webHostBuilder
                         .UseContentRoot(Directory.GetCurrentDirectory())
-                        .UseIISIntegration()
+                        .UseKestrel()
                         .UseStartup<Startup>();
                 });
         }
