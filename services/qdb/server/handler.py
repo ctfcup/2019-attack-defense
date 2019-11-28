@@ -25,6 +25,5 @@ class Handler:
         response = response_pb2.Response()
         response.gates.extend([x.to_protobuf() for x in server_gates])
         logins = response.option.Extensions[logins_pb2.LOGINS]
-        aes = AES.new(key, iv=iv, mode=AES.MODE_CBC)
-        logins.name = aes.encrypt(pad(b'123', 16))
+        logins.name.extend([AES.new(key, iv=iv, mode=AES.MODE_CBC).encrypt(pad(b'123', 16))])
         return web.Response(body=response.SerializeToString())

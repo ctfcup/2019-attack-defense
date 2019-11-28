@@ -35,7 +35,7 @@ async def get_logins():
     data = request.SerializeToString()
 
     async with aiohttp.ClientSession() as session:
-        async with session.post('http://0.0.0.0:8080/get_logins', data=data) as r:
+        async with session.post('http://localhost:16962/get_logins', data=data) as r:
             data = await r.read()
             data = response_pb2.Response().FromString(data)
     logins = data.option.Extensions[logins_pb2.LOGINS]
@@ -43,8 +43,8 @@ async def get_logins():
     key = bb84.generate_key(server_gates, client_gates, bits)
     key, iv = key[:16], key[16:]
 
-    aes = AES.new(key, iv=iv, mode=AES.MODE_CBC)
-    print(unpad(aes.decrypt(logins.name[:]), 16))
+    for name in logins.name[:]:
+        print(unpad(AES.new(key, iv=iv, mode=AES.MODE_CBC).decrypt(name), 16))
 
 
 if __name__ == '__main__':

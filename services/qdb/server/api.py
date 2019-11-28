@@ -9,4 +9,3 @@ app = web.Application()
 app.add_routes([
     web.post('/get_logins', handler.get_logins)
 ])
-web.run_app(app)

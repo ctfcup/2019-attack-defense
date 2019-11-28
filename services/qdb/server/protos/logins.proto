@@ -4,7 +4,7 @@ package crypto;
 import "protos/utils.proto";
 
 message Logins {
-    required bytes name = 1;
+    repeated bytes name = 1;
 }
 
 extend Option
