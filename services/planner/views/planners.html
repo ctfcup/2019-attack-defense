@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div id="planners">
+        <div class="container">
+            <div class="row">
+                <div class="wrap-headline">
+                    <h1 class="text-center">Planners</h1>
+                    
+                    <table class="table col-xs-4 table-hover" id="planners-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Creation Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for planner in planners %}
+                            <tr id="{{planner.id}}">
+                                <td>{{ loop.index }}</td>
+                                <td>{{ planner.name }}</td>
+                                <td>{{ planner.description }}</td>
+                                <td>{{ planner.creationTime }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="text-center" style="margin-top:2rem;margin-bottom:5rem;">
+                        <a id="add-planner-btn" class="btn btn-default btn-lg" role="button">Add new planner</a>
+                        <a id="save-planner-btn" class="btn btn-default btn-lg hidden-element" role="button">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
