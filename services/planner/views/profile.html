@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div id="profile">
+        <!-- 2 -->
+        <div class="container">
+            <div class="row">
+                <div class="wrap-headline">
+                    <h1 class="text-center">Profile</h1>
+                    <hr>
+                    <form class="form-horizontal col-xs-offset-5" id="profile-form" method="post">
+                        <div class="form-group">
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon"><i class="fa fa-at" aria-hidden="true"></i></div>
+                                <input type="text" class="form-control" name="email" placeholder="E-mail" value="{{ user.email }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                <input type="text" class="form-control" name="login" placeholder="Login" value="{{ user.login }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></div>
+                                <input type="text" class="form-control" name="password" placeholder="Password" value="{{ user.password }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon"><b>FN</b></div>
+                                <input type="text" class="form-control" name="firstName" placeholder="First Name" value="{{ user.firstName }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon"><b>SN</b></div>
+                                <input type="text" class="form-control" name="secondName" placeholder="Second Name" value="{{ user.secondName }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon"><i class="fa fa-mobile-alt" aria-hidden="true"></i></div>
+                                <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number" value="{{ user.phoneNumber }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-xs-4">
+                                <div class="input-group-addon"><i class="fa fa-address-card" aria-hidden="true"></i></div>
+                                <input type="text" class="form-control" name="additionalInfo" placeholder="Additional Info" value="{{ user.additionalInfo }}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="text-center" style="margin-top:2rem;margin-bottom:5rem;">
+                    <button class="btn btn-default btn-lg" href="#" role="button" id="save-btn">Save Changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
