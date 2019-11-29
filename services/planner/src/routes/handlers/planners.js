@@ -31,7 +31,7 @@ router.post('/', async function(req, resp, next) {
                         description: req.body.description,
                         creationTime: req.body.creationTime
                     });
-    resp.sendStatus(201)
+    resp.status(201).json({'id':id});
 });
 
 router.get('/:planner_id', async function(req, resp, next) {    
