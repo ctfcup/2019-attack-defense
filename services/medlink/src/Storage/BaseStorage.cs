@@ -56,7 +56,7 @@ namespace medlink.Storage
                 await Task.Delay(TimeSpan.FromMinutes(1));
                 var allfiles = Directory.GetFiles(Folder, "*", SearchOption.AllDirectories);
                 foreach (var file in allfiles)
-                    if (DateTime.UtcNow - File.GetCreationTime(file) >= Settings.Ttl)
+                    if (DateTime.UtcNow - File.GetCreationTime(file).ToUniversalTime() >= Settings.Ttl)
                         File.Delete(file);
             }
         }
