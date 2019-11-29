@@ -1,4 +1,6 @@
-﻿namespace medlink
+﻿using System.Collections.Generic;
+
+namespace medlink
 {
     public interface IFileBasedIndex<TValue, TKey>
     {
@@ -7,5 +9,6 @@
         bool Contains(TKey key);
         bool TryGet(TKey key, out TValue result);
         int Count { get; }
+        public IEnumerable<TValue> Values { get; }
     }
 }

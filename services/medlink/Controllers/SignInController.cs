@@ -13,15 +13,15 @@ namespace medlink.Controllers
     {
         private readonly IPasswords _passwords;
         private readonly ISessions _sessions;
-        private readonly IVendorTokens _vendorTokens;
+        private readonly IVendorInfos _vendorInfos;
         private readonly ISessionSource _sessionSource;
 
         public SignInController(IPasswords passwords, ISessions sessions,
-            IVendorTokens vendorTokens, ISessionSource sessionSource)
+            IVendorInfos vendorInfos, ISessionSource sessionSource)
         {
             _passwords = passwords;
             _sessions = sessions;
-            _vendorTokens = vendorTokens;
+            _vendorInfos = vendorInfos;
             _sessionSource = sessionSource;
         }
 
@@ -34,14 +34,13 @@ namespace medlink.Controllers
 
             if (AddUserOrCheckPass(login, password))
             {
-                if (formCollection.TryGetValue("vendorToken", out var token))
-                    _vendorTokens.Add(login, new VendorInfo
+                if (formCollection.TryGetValue("vendorToken", out var token) && !string.IsNullOrEmpty(token))
+                    _vendorInfos.Add(login, new VendorInfo
                     {
                         Token = token,
                         ModelSeries = new HashSet<string>()
                     });
 
-                //TODO: add to active users cache
                 var session = _sessionSource.GetSession();
                 _sessions.Add(session, login);
                 return session;

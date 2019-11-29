@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using medlink.Storage;
 
 namespace medlink
@@ -53,5 +54,6 @@ namespace medlink
         }
 
         public int Count => Index.Count;
+        public IEnumerable<TValue> Values => Index.Values;
     }
 }

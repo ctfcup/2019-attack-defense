@@ -8,6 +8,7 @@ export class BodyModel extends Component {
             modelSeries:"",
             familyUuid:"",
             vendorToken: "",
+            revision: "",
             referenceValues: {},
             addFieldValue: '',
             error: null,
@@ -24,6 +25,7 @@ export class BodyModel extends Component {
             method: 'PUT',
             body: JSON.stringify( {
                 ModelSeries: this.state.modelSeries,
+                Revision: this.state.revision,
                 bodyFamilyUUID: this.state.familyUuid,
                 ReferenceValues: {...this.state.referenceValues},
             })
@@ -59,13 +61,20 @@ export class BodyModel extends Component {
     };
 
     render() {
-        const {modelSeries, vendorToken, referenceValues, addFieldValue, familyUuid} = this.state;
+        const {modelSeries, vendorToken, referenceValues, addFieldValue, familyUuid, revision} = this.state;
         return <div className='common-form'>
             <Form onSubmit={this.submitForm} id="bodyModel">
                 <FormGroup row>
                     <Label className="label light-purple" for="modelSeries" sm={3}>Model Series</Label>
                     <Col sm={5}>
                         <Input type="text" name="modelSeries" id="modelSeries" value={modelSeries}
+                               onChange={this.handleChange}/>
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    <Label className="label light-purple" for="revision" sm={3}>Revision</Label>
+                    <Col sm={5}>
+                        <Input type="text" name="revision" id="revision" value={revision}
                                onChange={this.handleChange}/>
                     </Col>
                 </FormGroup>

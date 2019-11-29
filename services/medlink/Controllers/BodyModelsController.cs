@@ -17,7 +17,7 @@ namespace medlink.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<string>> GetDiagnosticInfo()
+        public async Task<IEnumerable<SeriesIndexRecord>> GetDiagnosticInfo()
         {
             return _bodyModelsStorage.GetAllModels();
         }

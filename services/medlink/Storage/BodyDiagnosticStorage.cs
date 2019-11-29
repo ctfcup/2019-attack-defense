@@ -5,30 +5,57 @@ using medlink.Helpers;
 
 namespace medlink.Storage
 {
+    public static class PathHelper
+    {
+        public static string BodyModelPath(string series, string revision)
+        {
+            return Path.Combine(series, revision);
+        }
+    }
+    
+    public class SeriesIndexRecord
+    {
+        public string Series { get; set; }
+        public string Revision { get; set; }
+    }
+    
+    public interface ISeriesIndex : IFileBasedIndex<SeriesIndexRecord, string>
+    {
+    }
+
+    public class SeriesIndex : FileBasedIndex<SeriesIndexRecord, string>, ISeriesIndex
+    {
+        public SeriesIndex(IFileDumper fileDumper, ISettings settings) : base(fileDumper, settings.SeriesIndex)
+        {
+        }
+    }
+
     public class BodyDiagnosticStorage : BaseStorage<BodyDiagnosticInfo>, IBodyModelsStorage
     {
-        private readonly HashSet<string> _bodySeries;
+        private readonly ISeriesIndex _seriesIndex;
         
-        public BodyDiagnosticStorage(ISerializer serializer, ISettings settings) : base(serializer, settings, settings.BodyDiagnosticFolder)
+        public BodyDiagnosticStorage(ISerializer serializer, ISettings settings, ISeriesIndex seriesIndex) : base(serializer, settings, settings.BodyDiagnosticFolder)
         {
-            _bodySeries = new HashSet<string>(Directory
-                .GetFiles(Folder, "*.*", SearchOption.AllDirectories)
-                .Select(Path.GetFileName));
+            _seriesIndex = seriesIndex;
         }
 
         protected override void OnAdd(BodyDiagnosticInfo info, string filename)
         {
-            _bodySeries.Add(info.ModelSeries + info.Revision);
+            _seriesIndex.Add($"{info.ModelSeries}{info.Revision}", new SeriesIndexRecord
+            {
+                Revision = info.Revision,
+                Series = info.ModelSeries
+            });
         }
 
-        public bool Contains(BodyDiagnosticInfo info)
+        public bool Contains(string filename)
         {
-            return _bodySeries.Contains(info.ModelSeries);
+            return File.Exists(filename);
         }
         
-        public IEnumerable<string> GetAllModels()
+        public IEnumerable<SeriesIndexRecord> GetAllModels()
         {
-            return _bodySeries;
+            return _seriesIndex.Values;
         }
     }
 }

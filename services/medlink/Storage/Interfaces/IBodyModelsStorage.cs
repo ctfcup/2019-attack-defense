@@ -4,7 +4,7 @@ namespace medlink.Storage
 {
     public interface IBodyModelsStorage : IBaseStorage<BodyDiagnosticInfo>
     {
-        IEnumerable<string> GetAllModels();
-        bool Contains(BodyDiagnosticInfo info);
+        IEnumerable<SeriesIndexRecord> GetAllModels();
+        bool Contains(string filename);
     }
 }

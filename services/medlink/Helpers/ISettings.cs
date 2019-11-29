@@ -8,7 +8,8 @@ namespace medlink.Helpers
         string TelemetryFolder { get; }
         string UserSessionsFolder { get; }
         public string UsersFolder { get; set; }
-        string VendorTokensFolder { get; }
+        string VendorsFolder { get; }
+        string SeriesIndex { get; }
         TimeSpan Ttl { get; set; }
         TimeSpan DumpInterval { get; }
         string SessionKey { get; }

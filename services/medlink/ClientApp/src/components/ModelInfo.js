@@ -7,6 +7,7 @@ export class ModelInfo extends Component {
         this.state = {
             modelSeries: "",
             vendorToken: "",
+            revision: "",
             referenceValues: {},
             addFieldValue: '',
             error: null,
@@ -20,7 +21,7 @@ export class ModelInfo extends Component {
         e.preventDefault();
         const form = new FormData(document.getElementById('bodyModel'));
         this.setState({error: null});
-        fetch(`api/bodymodel?vendorToken=${this.state.vendorToken}&modelSeries=${this.state.modelSeries}`, {
+        fetch(`api/bodymodel?vendorToken=${this.state.vendorToken}&revision=${this.state.revision}&modelSeries=${this.state.modelSeries}`, {
             method: 'GET',
         }).then(resp => {
             if (!resp.ok)
@@ -42,7 +43,7 @@ export class ModelInfo extends Component {
     };
 
     render() {
-        const {modelSeries, vendorToken, referenceValues} = this.state;
+        const {modelSeries, vendorToken, referenceValues, revision} = this.state;
         return (
             <div>
                 <div className='common-form'>
@@ -51,6 +52,13 @@ export class ModelInfo extends Component {
                             <Label className="label light-purple" for="modelSeries" sm={3}>Model Series</Label>
                             <Col sm={5}>
                                 <Input type="text" name="modelSeries" id="modelSeries" value={modelSeries}
+                                       onChange={this.handleChange}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="label light-purple" for="revision" sm={3}>Revision</Label>
+                            <Col sm={5}>
+                                <Input type="text" name="revision" id="revision" value={revision}
                                        onChange={this.handleChange}/>
                             </Col>
                         </FormGroup>

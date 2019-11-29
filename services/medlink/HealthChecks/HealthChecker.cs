@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using medlink.Storage;
 using medlink.Storage.Models;
@@ -21,10 +22,16 @@ namespace medlink.HealthChecks
                 CheckResults = new Dictionary<string, string>()
             };
 
-            if (!_bodyModelsStorage.Exist(bodyTelemetry.BodyModelSeries))
-                return new HealthReport();
+            var path = PathHelper.BodyModelPath(bodyTelemetry.BodyModelSeries, bodyTelemetry.BodyRevision);
+            if (!_bodyModelsStorage.Exist(path))
+            {
+                return new HealthReport()
+                {
+                    Error = "Unknown body type"
+                };
+            }
 
-            var diagnosticInfo = await _bodyModelsStorage.Get(bodyTelemetry.BodyModelSeries);
+            var diagnosticInfo = await _bodyModelsStorage.Get(path);
 
 
             foreach (var (name, refValue) in diagnosticInfo.ReferenceValues)

@@ -13,12 +13,12 @@ namespace medlink
     }
 
 
-    public class VendorTokens : FileBasedIndex<VendorInfo, string>, IVendorTokens
+    public class VendorInfos : FileBasedIndex<VendorInfo, string>, IVendorInfos
     {
         private readonly ILog _log;
         private readonly Dictionary<string, VendorInfo> tokens;
 
-        public VendorTokens(ISettings settings, IFileDumper fileDumper) : base(fileDumper, settings.VendorTokensFolder)
+        public VendorInfos(ISettings settings, IFileDumper fileDumper) : base(fileDumper, settings.VendorsFolder)
         {
         }
 

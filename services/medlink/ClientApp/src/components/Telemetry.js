@@ -6,6 +6,8 @@ export class Telemetry extends Component {
         super(props);
         this.state = {
             modelSeries: "",
+            revision: "",
+            bodyID: "",
             paramsValue: {},
             report: [],
             loading: true,
@@ -29,6 +31,8 @@ export class Telemetry extends Component {
             body: JSON.stringify({
                 owner: localStorage.getItem("login"),
                 bodymodelseries: this.state.modelSeries,
+                bodyRevision: this.state.revision,
+                bodyID: this.state.bodyID,
                 hardwaretelemetry: {...this.state.paramsValue}
             })
         }).then(resp => {
@@ -41,7 +45,7 @@ export class Telemetry extends Component {
     submitModelSeriesForm(e) {
         e.preventDefault();
         this.setState({error: null});
-        fetch(`api/template?modelSeries=${this.state.modelSeries}`, {
+        fetch(`api/template?modelSeries=${this.state.modelSeries}&revision=${this.state.revision}`, {
             method: 'GET'
         }).then(resp => {
             if (!resp.ok)
@@ -86,17 +90,21 @@ export class Telemetry extends Component {
     }
 
     renderBodySeriesForm() {
-        const {modelSeries} = this.state;
+        const {modelSeries, revision} = this.state;
         return (
             <div className='common-form'>
                 Set your bodie series:
                 <Form onSubmit={this.submitModelSeriesForm} id="bodySeries">
                     <FormGroup row>
-                        <Col>
-                            <Label className="label light-purple" for="modelSeries">Mode Series</Label>
+                        <Col >
+                            <Label className="label light-purple" for="modelSeries">Mode Series:Revision</Label>
+                        </Col>
+                        <Col sm={5}>
+                            <Input type="text" name="modelSeries" id="modelSeries" value={modelSeries}
+                                   onChange={this.handleChange}/>
                         </Col>
                         <Col>
-                            <Input type="text" name="modelSeries" id="modelSeries" value={modelSeries}
+                            <Input type="text" name="revision" id="revision" value={revision}
                                    onChange={this.handleChange}/>
                         </Col>
                         <Col>
@@ -111,9 +119,20 @@ export class Telemetry extends Component {
 
     renderSendSTelemetryForm() {
         const paramsValue = this.state.paramsValue;
+        const {bodyID} = this.state;
+
         return (
             <div className='common-form'>
                 <Form onSubmit={this.submitTelemetryForm} id="bodyModel">
+                    <FormGroup row>
+                        <Col >
+                            <Label className="label light-purple" for="bodyID">Body ID</Label>
+                        </Col>
+                        <Col>
+                            <Input type="text" name="bodyID" id="bodyID" value={bodyID}
+                                   onChange={this.handleChange}/>
+                        </Col>
+                    </FormGroup>
                     <p>Upload your body telemetry manualy:</p>
                     {Object.keys(paramsValue).map(key =>
                         <FormGroup row>
@@ -155,6 +174,7 @@ export class Telemetry extends Component {
                             <td>{report.checkResults[key]}</td>
                         </tr>
                     )}
+                    {report.error && <Alert color="danger">{report.error}</Alert>}
                     </tbody>
                 </table>
             </div>

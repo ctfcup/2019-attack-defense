@@ -30,12 +30,14 @@ export class ModelsList extends Component {
                 <thead>
                 <tr>
                     <th>Series</th>
+                    <th>Revision</th>
                 </tr>
                 </thead>
                 <tbody>
                 {models.map(key=>
                     <tr key={key}>
-                        <td>{key}</td>
+                        <td>{key.series}</td>
+                        <td>{key.revision}</td>
                     </tr>
                 )}
                 </tbody>

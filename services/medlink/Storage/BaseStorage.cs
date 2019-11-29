@@ -16,6 +16,9 @@ namespace medlink.Storage
             _serializer = serializer;
             Settings = settings;
             Folder = folder;
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+            
             StartCleanup().ConfigureAwait(false);
         }
 

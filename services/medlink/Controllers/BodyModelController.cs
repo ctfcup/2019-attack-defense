@@ -14,10 +14,10 @@ namespace medlink.Controllers
     {
         private readonly IBodyModelsStorage _bodyModelsStorage;
         private readonly ISerializer _serializer;
-        private readonly IVendorTokens _vendors;
+        private readonly IVendorInfos _vendors;
 
         public BodyModelController(ISettings settings, ISessions sessions,
-            IBodyModelsStorage bodyModelsStorage, ISerializer serializer, IVendorTokens vendors) : base(
+            IBodyModelsStorage bodyModelsStorage, ISerializer serializer, IVendorInfos vendors) : base(
             settings, sessions)
         {
             _bodyModelsStorage = bodyModelsStorage;
@@ -30,8 +30,9 @@ namespace medlink.Controllers
         {
             Request.Query.TryGetValue("vendorToken", out var vendorToken);
             var content = await Request.Body.ReadToEndAsync();
-            Console.WriteLine(content);
-            var hardwareDiagnosticInfo = _serializer.Deserialize<BodyDiagnosticInfo>(content);
+            var info = _serializer.Deserialize<BodyDiagnosticInfo>(content);
+            var path = GetPath(info.ModelSeries, info.Revision);
+
             await HandleAuthorizedRequest(async login =>
             {
                 if (!_vendors.TryGet(login, out var vendor) ||
@@ -41,15 +42,14 @@ namespace medlink.Controllers
                     return;
                 }
 
-                if (_bodyModelsStorage.Contains(hardwareDiagnosticInfo))
+                if (_bodyModelsStorage.Contains(path))
                 {
-                    //TODO: Normal conflict
-                    Response.StatusCode = 1111;
+                    Response.StatusCode = 409;
                     return;
                 }
-                
-                await _bodyModelsStorage.Add(hardwareDiagnosticInfo,
-                    GetPath(hardwareDiagnosticInfo.ModelSeries, hardwareDiagnosticInfo.Revision));
+
+                vendor.ModelSeries.Add(info.ModelSeries);
+                await _bodyModelsStorage.Add(info,path);
             });
         }
         
@@ -75,9 +75,9 @@ namespace medlink.Controllers
             });
         }
 
-        private static string GetPath(string login, StringValues series)
+        private static string GetPath(string infoModelSeries, string infoRevision)
         {
-            return Path.Combine(login, series);
+            return Path.Combine(infoModelSeries, infoRevision);
         }
     }
 }
