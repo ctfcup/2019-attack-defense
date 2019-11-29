@@ -80,7 +80,7 @@ $(document).ready(function() {
             url: '/profile',
             cache: false,
             data: JSON.stringify(s_data)
-        }).done(function(msg) {alert(msg)} )
+        }).done(function(msg) { location.reload(); } )
         .fail(function(xhr) {alert(xhr.status)} )
         e.preventDefault(); 
     });
@@ -146,7 +146,7 @@ $(document).ready(function() {
                     "name": $("#add-task-form input").val(),
                     "description": $("#add-task-form textarea").val()
                 })
-        }).done(function(msg) { alert(msg) } )
+        }).done(function(msg) { location.reload(); } )
         .fail(function(xhr) {alert(xhr.status)} )
     });
     
