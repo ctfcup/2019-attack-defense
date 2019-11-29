@@ -27,6 +27,10 @@ class Handler:
         return server_gates, key
 
 
+    async def ping(self, request):
+        return web.Response(status=200)
+
+
     async def get_logins(self, request):
         request = request_pb2.Request().FromString(await request.read())
         server_gates, key = self._process_request(request)
