@@ -164,7 +164,7 @@ async def get_flag_aes(request: GetRequest) -> Verdict:
         return Verdict.DOWN('DOWN')
 
     if flag != extend_flag(request.flag).encode():
-        return Verdict.MUMBLE("AES doesn't work")
+        return Verdict.CORRUPT("Wrong flag!")
     return Verdict.OK()
 
 
@@ -212,7 +212,7 @@ async def get_flag_xor(request: GetRequest) -> Verdict:
         return Verdict.DOWN('DOWN')
 
     if flag != extend_flag(request.flag).encode():
-        return Verdict.MUMBLE("XOR doesn't work")
+        return Verdict.CORRUPT("Wrong flag")
     return Verdict.OK()
 
 
