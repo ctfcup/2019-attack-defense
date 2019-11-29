@@ -1,4 +1,5 @@
 using System.IO;
+using System.Net;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -20,7 +21,10 @@ namespace medlink
                 {
                     webHostBuilder
                         .UseContentRoot(Directory.GetCurrentDirectory())
-                        .UseKestrel()
+                        .UseKestrel(options =>
+                        {
+                            options.Listen(IPAddress.Loopback, 5002);
+                        })
                         .UseStartup<Startup>();
                 });
         }
