@@ -13,7 +13,7 @@ class Model {
         return name in this.#fields && typeof(value) == this.#fields[name];
     }
     
-    prechecking(str) { return str.replace(/[<>\\();/]/g, '') }
+    prechecking(str) { return str.replace(/[<>\\;/]/g, '') }
     
     getTableName() {
         return this.#table_name;
