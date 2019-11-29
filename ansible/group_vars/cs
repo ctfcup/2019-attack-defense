@@ -42,13 +42,13 @@ cs_checkers_hostname_cb: |
   sub { my ($team, $service) = @_; $service->{host_suffix} ? "$team->{host_prefix}$service->{host_suffix}" : "$team->{host}" }
 
 teams: |
-  {name => 'vbteam10', network => '10.60.10.0/24', host => '10.60.10.0', host_prefix => '10.60.10.', token => '324978e8-b2f8-487b-8f75-9772e516f7ea'},
-  {name => 'vbteam11', network => '10.60.11.0/24', host => '10.60.11.0', host_prefix => '10.60.11.', token => '324978e8-b2f8-487b-8f75-9772e516f7e1'},
+  {name => 'vbteam10', network => '10.60.10.0/24', host => '10.60.10.0', host_prefix => '10.60.10.', token => 'aaaaaa'},
+  {name => 'vbteam11', network => '10.60.11.0/24', host => '10.60.11.0', host_prefix => '10.60.11.', token => 'bbbbbb'},
 
 services: |
-  {name => 'fraud_detector', path => 'checkers/fraud_detector/checker.py', timeout => 30, host_suffix => '1'},
-  {name => 'binder',         path => 'checkers/Binder/check.sh',           timeout => 30, host_suffix => '2'},
-  {name => 'SePtoN',         path => 'checkers/SePtoN/checker.sh',         timeout => 30, host_suffix => '3'},
+  {name => 'medlink', path => 'checkers/medlink/checker.py', timeout => 30, host_suffix => '1'},
+  {name => 'planner', path => 'checkers/planner/checker.py', timeout => 30, host_suffix => '2'},
+  {name => 'qdb',     path => 'checkers/qdb/checker.py',     timeout => 30, host_suffix => '3'},
 
 #  {name => 'patrol',    path => 'checkers/patrol/checker.py',    timeout => 30, tcp_port => 23179},
 #  {name => 'radio',     path => 'checkers/radio/checker.py',     timeout => 30, tcp_port => 4553},
