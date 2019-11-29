@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package crypto;
+import "protos/utils.proto";
+
+message Response {
+    repeated Gate gates = 1;
+    required Option option = 2;
+}

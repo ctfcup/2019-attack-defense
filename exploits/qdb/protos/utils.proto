@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package crypto;
+
+enum Qubit {
+  QUBIT_0 = 0;
+  QUBIT_45 = 1;
+  QUBIT_90 = 2;
+  QUBIT_135 = 3;
+}
+
+enum Gate {
+  PLUS = 0;
+  CROSS = 1;
+}
+
+enum Algo {
+  AES = 0;
+  XOR = 1;
+}
+
+message Option {
+  extensions 10 to max;
+}
