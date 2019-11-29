@@ -30,9 +30,9 @@ router.post('/', async function(req, resp, next) {
     else {
         let updated_user = {};
         Object.keys(user).forEach(function(field){if (req.body[field] && req.body[field]!=user[field]) updated_user[field] = req.body[field]});
-        if (Object.keys(updated_user).length !== 0)
-            const update_res = await req.app.get('orm')
-                                .tables.users.update( {id: user.id}, updated_user); 
+        if (Object.keys(updated_user).length !== 0) {
+            const update_res = await req.app.get('orm').tables.users.update( {id: user.id}, updated_user); 
+        }
 
         resp.sendStatus(200);
     }
