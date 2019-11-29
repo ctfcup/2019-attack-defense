@@ -14,7 +14,11 @@ enum Gate {
   CROSS = 1;
 }
 
-message Option
-{
+enum Algo {
+  AES = 0;
+  XOR = 1;
+}
+
+message Option {
   extensions 10 to max;
 }

@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protos/utils.proto',
   package='crypto',
-  serialized_pb=_b('\n\x12protos/utils.proto\x12\x06\x63rypto\"\x12\n\x06Option*\x08\x08\n\x10\x80\x80\x80\x80\x02*?\n\x05Qubit\x12\x0b\n\x07QUBIT_0\x10\x00\x12\x0c\n\x08QUBIT_45\x10\x01\x12\x0c\n\x08QUBIT_90\x10\x02\x12\r\n\tQUBIT_135\x10\x03*\x1b\n\x04Gate\x12\x08\n\x04PLUS\x10\x00\x12\t\n\x05\x43ROSS\x10\x01')
+  serialized_pb=_b('\n\x12protos/utils.proto\x12\x06\x63rypto\"\x12\n\x06Option*\x08\x08\n\x10\x80\x80\x80\x80\x02*?\n\x05Qubit\x12\x0b\n\x07QUBIT_0\x10\x00\x12\x0c\n\x08QUBIT_45\x10\x01\x12\x0c\n\x08QUBIT_90\x10\x02\x12\r\n\tQUBIT_135\x10\x03*\x1b\n\x04Gate\x12\x08\n\x04PLUS\x10\x00\x12\t\n\x05\x43ROSS\x10\x01*\x18\n\x04\x41lgo\x12\x07\n\x03\x41\x45S\x10\x00\x12\x07\n\x03XOR\x10\x01')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -77,12 +77,37 @@ _GATE = _descriptor.EnumDescriptor(
 _sym_db.RegisterEnumDescriptor(_GATE)
 
 Gate = enum_type_wrapper.EnumTypeWrapper(_GATE)
+_ALGO = _descriptor.EnumDescriptor(
+  name='Algo',
+  full_name='crypto.Algo',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='AES', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='XOR', index=1, number=1,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=144,
+  serialized_end=168,
+)
+_sym_db.RegisterEnumDescriptor(_ALGO)
+
+Algo = enum_type_wrapper.EnumTypeWrapper(_ALGO)
 QUBIT_0 = 0
 QUBIT_45 = 1
 QUBIT_90 = 2
 QUBIT_135 = 3
 PLUS = 0
 CROSS = 1
+AES = 0
+XOR = 1
 
 
 
@@ -111,6 +136,7 @@ _OPTION = _descriptor.Descriptor(
 DESCRIPTOR.message_types_by_name['Option'] = _OPTION
 DESCRIPTOR.enum_types_by_name['Qubit'] = _QUBIT
 DESCRIPTOR.enum_types_by_name['Gate'] = _GATE
+DESCRIPTOR.enum_types_by_name['Algo'] = _ALGO
 
 Option = _reflection.GeneratedProtocolMessageType('Option', (_message.Message,), dict(
   DESCRIPTOR = _OPTION,

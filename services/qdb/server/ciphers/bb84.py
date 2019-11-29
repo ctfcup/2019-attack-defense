@@ -28,4 +28,4 @@ class BB84:
         for server_gate, client_gate, bit in zip(server_gates, client_gates, bits):
             if server_gate == client_gate:
                 key += str(int(bit))
-        return bytes.fromhex(hex(int(key, 2))[2:].zfill(64)[:64])
+        return int(key, 2)

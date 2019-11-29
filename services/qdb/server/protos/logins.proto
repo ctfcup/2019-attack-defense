@@ -7,7 +7,6 @@ message Logins {
     repeated bytes name = 1;
 }
 
-extend Option
-{
+extend Option {
     optional Logins LOGINS = 10;
 }

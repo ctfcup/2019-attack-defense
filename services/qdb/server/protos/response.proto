@@ -4,7 +4,6 @@ package crypto;
 import "protos/utils.proto";
 
 message Response {
-    repeated Qubit qubits = 1;
-    repeated Gate gates = 2;
-    required Option option = 3;
+    repeated Gate gates = 1;
+    required Option option = 2;
 }

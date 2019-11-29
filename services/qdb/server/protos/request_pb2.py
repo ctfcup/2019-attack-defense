@@ -19,7 +19,7 @@ import protos.utils_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protos/request.proto',
   package='crypto',
-  serialized_pb=_b('\n\x14protos/request.proto\x12\x06\x63rypto\x1a\x12protos/utils.proto\"e\n\x07Request\x12\x1d\n\x06qubits\x18\x01 \x03(\x0e\x32\r.crypto.Qubit\x12\x1b\n\x05gates\x18\x02 \x03(\x0e\x32\x0c.crypto.Gate\x12\x1e\n\x06option\x18\x03 \x01(\x0b\x32\x0e.crypto.Option')
+  serialized_pb=_b('\n\x14protos/request.proto\x12\x06\x63rypto\x1a\x12protos/utils.proto\"\x81\x01\n\x07Request\x12\x1d\n\x06qubits\x18\x01 \x03(\x0e\x32\r.crypto.Qubit\x12\x1b\n\x05gates\x18\x02 \x03(\x0e\x32\x0c.crypto.Gate\x12\x1e\n\x06option\x18\x03 \x01(\x0b\x32\x0e.crypto.Option\x12\x1a\n\x04\x61lgo\x18\x04 \x02(\x0e\x32\x0c.crypto.Algo')
   ,
   dependencies=[protos.utils_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -55,6 +55,13 @@ _REQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='algo', full_name='crypto.Request.algo', index=3,
+      number=4, type=14, cpp_type=8, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -66,13 +73,14 @@ _REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=52,
-  serialized_end=153,
+  serialized_start=53,
+  serialized_end=182,
 )
 
 _REQUEST.fields_by_name['qubits'].enum_type = protos.utils_pb2._QUBIT
 _REQUEST.fields_by_name['gates'].enum_type = protos.utils_pb2._GATE
 _REQUEST.fields_by_name['option'].message_type = protos.utils_pb2._OPTION
+_REQUEST.fields_by_name['algo'].enum_type = protos.utils_pb2._ALGO
 DESCRIPTOR.message_types_by_name['Request'] = _REQUEST
 
 Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
