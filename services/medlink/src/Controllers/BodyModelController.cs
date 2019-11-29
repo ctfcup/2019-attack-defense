@@ -34,12 +34,17 @@ namespace medlink.Controllers
 
             await HandleAuthorizedRequest(async login =>
             {
-                var isVendorExist = _vendors.TryGet(login, out var vendor);
+                if (!_vendors.TryGet(login, out var vendor))
+                {
+                    Response.StatusCode = 403;
+                    return;
+                }
+
                 var isVendorTokenValid = vendor.Token.Equals(vendorToken);
                 var isAnotherVendorsModel = !vendor.ModelSeries.Contains(info.ModelSeries) && 
                                            _bodyModelsStorage.Contains(info.ModelSeries);
                 
-                if (!isVendorExist || !isVendorTokenValid || isAnotherVendorsModel)
+                if (!isVendorTokenValid || isAnotherVendorsModel)
                 {
                     Response.StatusCode = 403;
                     return;

@@ -16,7 +16,7 @@ namespace medlink
         public string GetSession()
         {
             var secureKeyPart = Utils.GetSha256Bytes(_seed);
-            var idPart = BitConverter.GetBytes(_sessions.Count);
+            var idPart = BitConverter.GetBytes(_sessions.Id);
             var data = new byte[secureKeyPart.Length + idPart.Length];
             
             Buffer.BlockCopy(secureKeyPart, 0, data, 0, secureKeyPart.Length);

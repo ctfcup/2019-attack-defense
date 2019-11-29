@@ -16,7 +16,7 @@ namespace medlink.Storage
         {
             _seriesIndex = seriesIndex;
             _recordsCache = new HashSet<BodyIDDTO>(_seriesIndex.SelectMany(pair => pair.Value.Value.Select(revision =>
-                new BodyIDDTO()
+                new BodyIDDTO
                 {
                     Series = pair.Key,
                     Revision = revision
@@ -25,7 +25,7 @@ namespace medlink.Storage
 
         protected override void OnAdd(BodyModelInfo info, string filename)
         {
-            if (_seriesIndex.Contains(info.ModelSeries))
+            if (!_seriesIndex.Contains(info.ModelSeries))
             {
                 var set = new HashSet<string> {info.Revision};
                 _seriesIndex.Add($"{info.ModelSeries}",set);

@@ -9,5 +9,6 @@ namespace medlink
         bool Contains(TKey key);
         bool TryGet(TKey key, out TValue result);
         int Count { get; }
+        int Id { get; }
     }
 }
