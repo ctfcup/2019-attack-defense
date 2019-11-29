@@ -33,6 +33,9 @@ def send(bits, gates):
     return qubits
 
 
+def extend_flag(flag):
+    return '{}. This is Ur flag!'
+
 def generate_request():
     request = request_pb2.Request()
 
@@ -48,7 +51,7 @@ def generate_request():
     return request, bits, client_gates
 
 
-async def get_logins(api, algo, hostname):
+async def get_logins(algo, hostname):
     request, bits, client_gates = generate_request()
     request.algo = algo
     request = request.SerializeToString()
@@ -124,14 +127,15 @@ async def check_service(request: CheckRequest) -> Verdict:
 @checker.define_put(vuln_num=1, vuln_rate=1)
 async def put_flag_aes(request: PutRequest) -> Verdict:
     algo = utils_pb2.Algo.AES
-    login, msg = os.urandom(12), request.flag.encode()
+    login, msg = os.urandom(12), extend_flag(request.flag).encode()
 
     key, decrypted_msg = await set_msg(login, msg, algo, request.hostname)
 
-    if decrypted_msg == msg:
-        return Verdict.OK("{}:{}".format(login.hex(), key))
-    else:
-        return Verdict.MUMBLE("AES doesn't work", "AES doesn't work")
+    if decrypted_msg != msg:
+        return Verdict.DOWN("AES doesn't work", "AES doesn't work")
+    if login not in await get_logins(algo, request.hostname):
+        return Verdict.MUMBLE("Can't find login", "Can't find login")
+    return Verdict.OK("{}:{}".format(login.hex(), key))
 
 
 @checker.define_get(vuln_num=1)
@@ -140,24 +144,27 @@ async def get_flag_aes(request: GetRequest) -> Verdict:
     login, key = request.flag_id.split(':')
     login, key = bytes.fromhex(login), int(key)
 
+    if login not in await get_logins(algo, request.hostname):
+        return Verdict.MUMBLE("Can't find login", "Can't find login")
+
     flag = await get_msg(login, key, algo, request.hostname)
-    if flag == request.flag.encode():
-        return Verdict.OK()
-    else:
+    if flag != extend_flag(request.flag).encode():
         return Verdict.MUMBLE("AES doesn't work", "AES doesn't work")
+    return Verdict.OK()
 
 
 @checker.define_put(vuln_num=2, vuln_rate=1)
 async def put_flag_xor(request: PutRequest) -> Verdict:
     algo = utils_pb2.Algo.XOR
-    login, msg = os.urandom(12), request.flag.encode()
+    login, msg = os.urandom(12), extend_flag(request.flag).encode()
 
     key, decrypted_msg = await set_msg(login, msg, algo, request.hostname)
 
-    if decrypted_msg == msg:
-        return Verdict.OK("{}:{}".format(login.hex(), key))
-    else:
-        return Verdict.MUMBLE("XOR doesn't work", "XOR doesn't work")
+    if decrypted_msg != msg:
+        return Verdict.DOWN("XOR doesn't work", "XOR doesn't work")
+    if login not in await get_logins(algo, request.hostname):
+        return Verdict.MUMBLE("Can't find login", "Can't find login")
+    return Verdict.OK("{}:{}".format(login.hex(), key))
 
 
 @checker.define_get(vuln_num=2)
@@ -166,11 +173,13 @@ async def get_flag_xor(request: GetRequest) -> Verdict:
     login, key = request.flag_id.split(':')
     login, key = bytes.fromhex(login), int(key)
 
+    if login not in await get_logins(algo, request.hostname):
+        return Verdict.MUMBLE("Can't find login", "Can't find login")
+
     flag = await get_msg(login, key, algo, request.hostname)
-    if flag == request.flag.encode():
-        return Verdict.OK()
-    else:
+    if flag != extend_flag(request.flag).encode():
         return Verdict.MUMBLE("XOR doesn't work", "XOR doesn't work")
+    return Verdict.OK()
 
 
 if __name__ == "__main__":
