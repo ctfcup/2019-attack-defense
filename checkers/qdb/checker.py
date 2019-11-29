@@ -6,7 +6,7 @@ import traceback
 import asyncio
 
 from api import API
-from chklib import Checker, CheckRequest, GetRequest, PutRequest, Verdict
+from gornilo import Checker, CheckRequest, GetRequest, PutRequest, Verdict
 
 from ciphers import aes, xor
 from ciphers.bb84 import BB84
