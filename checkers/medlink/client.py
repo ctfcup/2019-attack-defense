@@ -36,7 +36,7 @@ def register_vendor(addr):
     r = ensure_success(lambda: requests.post(url, headers=headers, data=user, verify=False))
 
     user["session"] = r.content.decode("UTF-8")
-    return user;
+    return user
 
 
 def put_body(addr, session, body_model, token):
@@ -45,7 +45,6 @@ def put_body(addr, session, body_model, token):
     cookies = {'medlinkToken': session}
     payload = {'vendorToken': token}
     r = ensure_success(lambda: requests.put(url, headers=headers, json=body_model, params=payload, cookies=cookies, verify=False))
-
 
 
 def get_body(addr, session, model, revision, token):
@@ -107,12 +106,11 @@ def health_check(addr, session):
 def ensure_success(request):
     try:
         r = request()
-        if r.status_code != 200:
-            raise HTTPException(Verdict.MUMBLE("Invalid status code: %s %d" % (r, r.status_code)))
-
-        return r
     except Exception as e:
         raise HTTPException(Verdict.DOWN("HTTP error: %s" % e))
+    if r.status_code != 200:
+        raise HTTPException(Verdict.MUMBLE("Invalid status code: %s %d" % (r, r.status_code)))
+    return r
 
 
 class HTTPException(Exception):

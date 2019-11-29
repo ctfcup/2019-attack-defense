@@ -58,8 +58,6 @@ router.post('/:planner_id', async function(req, resp, next) {
                         });
     if (planner.length == 0)
         resp.sendStatus(404);
-    console.log("ADD TASK");
-    console.log(req.body);
     
     let id = await req.app.get('orm')
                     .tables.tasks.add({

@@ -1,5 +1,5 @@
 'use strict';
-const orm = require('nodeorm');
+const orm = require('node-orm-fluent');
 const Model = orm.Model;
 
 
