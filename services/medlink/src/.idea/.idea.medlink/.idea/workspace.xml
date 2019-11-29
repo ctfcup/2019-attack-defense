@@ -1,11 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5c5be547-e27c-4794-80b5-10f1f3fdfd39" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Storage/BodyModelsStorage.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Storage/Interfaces/ISeriesIndex.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Storage/Models/BodyIDDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Storage/Models/VendorInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Storage/SeriesIndex.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.medlink/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.medlink/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.medlink/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.medlink/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/BodyModelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/BodyModelController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/BodyModelsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/BodyModelsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/HealthCheckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HealthCheckController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/TemplateController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/TemplateController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HealthChecks/HealthChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HealthChecks/HealthChecker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/Utils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SessionSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SessionSource.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/BodyDiagnosticStorage.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/FileBasedIndex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/FileBasedIndex.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Indices/PasswordsByUsers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Indices/PasswordsByUsers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Indices/Sessions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Indices/Sessions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Indices/VendorInfos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Indices/VendorInfos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Interfaces/IBodyModelsStorage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Interfaces/IBodyModelsStorage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Interfaces/IFileBasedIndex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Interfaces/IFileBasedIndex.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Models/BodyDiagnosticInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Models/BodyModelInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/netcoreapp3.0/medlink.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/netcoreapp3.0/medlink.csprojAssemblyReference.cache" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Storage/Models/VendorInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Interfaces/ISeriesIndex.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/SeriesIndex.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/272C251A-B740-469D-A1F5-BCEA2E475150/0/IQueryCollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Models/BodyIDDTO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ISessionSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SessionSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F1DE3EF6-EE6A-41A4-A5DE-303C8CB1A7F5/61/BitConverter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Helpers/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/BaseStorage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Helpers/Utils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/BodyTelemetryStorage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/BodyModelsStorage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/FileDumper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/FileBasedIndex.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/BodyModelsController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/BodyModelController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/SessionControllerBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/HealthCheckController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/TelemetryController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/SignInController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/HealthChecks/HealthChecker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/TemplateController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Models/BodyModelInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/HealthChecks/IHealthChecker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Models/HealthReport.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Models/BodyTelemetry.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Indices/PasswordsByUsers.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Indices/VendorInfos.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Indices/Sessions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Interfaces/IBodyModelsStorage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Interfaces/IFileBasedIndex.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Interfaces/IBodyTelemetryStorage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Storage/Interfaces/IFileDumper.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Program.cs" />
+        <option value="$PROJECT_DIR$/Helpers/Utils.cs" />
+        <option value="$PROJECT_DIR$/SessionSource.cs" />
+        <option value="$PROJECT_DIR$/Controllers/HealthCheckController.cs" />
+        <option value="$PROJECT_DIR$/HealthChecks/HealthChecker.cs" />
+        <option value="$PROJECT_DIR$/Storage/Interfaces/IBodyModelsStorage.cs" />
+        <option value="$PROJECT_DIR$/Controllers/TemplateController.cs" />
+        <option value="$PROJECT_DIR$/Controllers/BodyModelController.cs" />
+        <option value="$PROJECT_DIR$/Storage/BodyDiagnosticStorage.cs" />
+        <option value="$PROJECT_DIR$/Storage/Interfaces/IFileBasedIndex.cs" />
+        <option value="$PROJECT_DIR$/Storage/BodyModelsStorage.cs" />
+        <option value="$PROJECT_DIR$/Storage/SeriesIndex.cs" />
+        <option value="$PROJECT_DIR$/Storage/FileBasedIndex.cs" />
+        <option value="$PROJECT_DIR$/Storage/Indices/PasswordsByUsers.cs" />
+        <option value="$PROJECT_DIR$/Storage/Indices/Sessions.cs" />
+        <option value="$PROJECT_DIR$/Storage/Indices/VendorInfos.cs" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1UIuOrOgGXtDTVJFzsQ1cvVqjg6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.medlink: medlink.web.panel">
+    <configuration name="medlink: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/medlink.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="medlink: medlink.web.panel" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/medlink.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="medlink.web.panel" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c5be547-e27c-4794-80b5-10f1f3fdfd39" name="Default Changelist" comment="" />
+      <created>1575056404766</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575056404766</updated>
+      <workItem from="1575056412072" duration="999000" />
+      <workItem from="1575042603546" duration="8155000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1261" height="192" key="GridCell.Tab.0.bottom" timestamp="1575045439583">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state width="1261" height="192" key="GridCell.Tab.0.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575045439583" />
+    <state width="1261" height="192" key="GridCell.Tab.0.center" timestamp="1575045439583">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state width="1261" height="192" key="GridCell.Tab.0.center/62.0.1304.768@62.0.1304.768" timestamp="1575045439583" />
+    <state width="1261" height="192" key="GridCell.Tab.0.left" timestamp="1575045439582">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state width="1261" height="192" key="GridCell.Tab.0.left/62.0.1304.768@62.0.1304.768" timestamp="1575045439582" />
+    <state width="1261" height="192" key="GridCell.Tab.0.right" timestamp="1575045439583">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state width="1261" height="192" key="GridCell.Tab.0.right/62.0.1304.768@62.0.1304.768" timestamp="1575045439583" />
+    <state x="511" y="83" key="RiderGenerateDialog" timestamp="1575050239665">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state x="511" y="83" key="RiderGenerateDialog/62.0.1304.768@62.0.1304.768" timestamp="1575050239665" />
+    <state x="377" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1575046221112">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state x="377" y="89" width="672" height="678" key="search.everywhere.popup/62.0.1304.768@62.0.1304.768" timestamp="1575046221112" />
   </component>
 </project>

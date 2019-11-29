@@ -1,5 +1,6 @@
 using System.IO;
 using System.Net;
+using System.Threading;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +11,9 @@ namespace medlink
     {
         public static void Main(string[] args)
         {
+            ThreadPool.SetMaxThreads(32767, 32767);
+            ThreadPool.SetMinThreads(2048, 2048);
+            
             CreateWebHostBuilder(args).Build().Run();
         }
 
