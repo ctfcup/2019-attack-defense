@@ -2,5 +2,5 @@ aiohttp
 aioredis
 gunicorn
 numpy
-protobuf==3.11.0
+protobuf==3.10.1
 pycryptodome
