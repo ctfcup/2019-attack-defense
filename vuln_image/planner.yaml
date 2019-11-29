@@ -1,0 +1,3 @@
+- hosts: planner
+  roles:
+    - planner

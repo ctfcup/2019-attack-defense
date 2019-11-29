@@ -1,0 +1,3 @@
+- hosts: common
+  roles:
+    - base_image
