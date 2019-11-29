@@ -1,6 +1,6 @@
 ---
 - hostname:
-    name: {{ service_name }}
+    name: "{{ service_name }}"
 
 - name: Uploading service {{ service_name }}
   debug:
