@@ -31,7 +31,7 @@ router.post('/', async function(req, resp, next) {
                         description: req.body.description,
                         creationTime: req.body.creationTime
                     });
-    resp.json('Planner created')
+    resp.sendStatus(201)
 });
 
 router.get('/:planner_id', async function(req, resp, next) {    
@@ -71,7 +71,7 @@ router.post('/:planner_id', async function(req, resp, next) {
                         day: req.body.day,
                         time: req.body.time
                     });
-    resp.json("Added")
+    resp.sendStatus(201);
 });
 
 

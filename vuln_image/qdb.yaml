@@ -1,0 +1,3 @@
+- hosts: qdb
+  roles:
+    - { role: service, service_name: qdb }

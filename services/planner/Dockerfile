@@ -10,4 +10,4 @@ COPY ./src/tmp_libs/nodeorm ./node_modules/nodeorm
 
 COPY ./src/tmp_libs/random ./node_modules/random
 
-CMD ["node", "./app.js"]
+ENTRYPOINT ./start.sh

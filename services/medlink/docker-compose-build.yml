@@ -1,0 +1,9 @@
+version: '3'
+services:
+  medlink_build:
+    container_name: medlink-build
+    build:
+      context: .
+      dockerfile: dockerfile-build
+    volumes:
+      - ./publish:/app/publish

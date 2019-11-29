@@ -1,0 +1,3 @@
+- hosts: medlink
+  roles:
+    - { role: service, service_name: medlink }

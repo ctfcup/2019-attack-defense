@@ -34,7 +34,7 @@ def send(bits, gates):
 
 
 def extend_flag(flag):
-    return '{}. This is Ur flag!'
+    return 'This is Ur flag:{}. Do not lose it!'.format(flag)
 
 def generate_request():
     request = request_pb2.Request()
@@ -120,7 +120,8 @@ async def check_service(request: CheckRequest) -> Verdict:
         try:
             await api.ping()
         except Exception as ex:
-            return Verdict.DOWN('DOWN', traceback.format_exc())
+            print(traceback.format_exc())
+            return Verdict.DOWN('DOWN')
     return Verdict.OK()
 
 
@@ -129,27 +130,41 @@ async def put_flag_aes(request: PutRequest) -> Verdict:
     algo = utils_pb2.Algo.AES
     login, msg = os.urandom(12), extend_flag(request.flag).encode()
 
-    key, decrypted_msg = await set_msg(login, msg, algo, request.hostname)
+    try:
+        key, decrypted_msg = await set_msg(login, msg, algo, request.hostname)
+    except Exception as ex:
+        print(traceback.format_exc())
+        return Verdict.DOWN('DOWN')
 
     if decrypted_msg != msg:
-        return Verdict.DOWN("AES doesn't work", "AES doesn't work")
+        return Verdict.DOWN("AES doesn't work")
     if login not in await get_logins(algo, request.hostname):
-        return Verdict.MUMBLE("Can't find login", "Can't find login")
+        return Verdict.MUMBLE("Can't find login")
     return Verdict.OK("{}:{}".format(login.hex(), key))
 
 
 @checker.define_get(vuln_num=1)
 async def get_flag_aes(request: GetRequest) -> Verdict:
     algo = utils_pb2.Algo.AES
-    login, key = request.flag_id.split(':')
-    login, key = bytes.fromhex(login), int(key)
 
-    if login not in await get_logins(algo, request.hostname):
-        return Verdict.MUMBLE("Can't find login", "Can't find login")
+    try:
+        login, key = request.flag_id.split(':')
+        login, key = bytes.fromhex(login), int(key)
 
-    flag = await get_msg(login, key, algo, request.hostname)
+        if login not in await get_logins(algo, request.hostname):
+            return Verdict.MUMBLE("Can't find login")
+    except Exception as ex:
+        print(traceback.format_exc())
+        return Verdict.DOWN('DOWN')
+
+    try:
+        flag = await get_msg(login, key, algo, request.hostname)
+    except Exception as ex:
+        print(traceback.format_exc())
+        return Verdict.DOWN('DOWN')
+
     if flag != extend_flag(request.flag).encode():
-        return Verdict.MUMBLE("AES doesn't work", "AES doesn't work")
+        return Verdict.MUMBLE("AES doesn't work")
     return Verdict.OK()
 
 
@@ -158,27 +173,46 @@ async def put_flag_xor(request: PutRequest) -> Verdict:
     algo = utils_pb2.Algo.XOR
     login, msg = os.urandom(12), extend_flag(request.flag).encode()
 
-    key, decrypted_msg = await set_msg(login, msg, algo, request.hostname)
+    try:
+        key, decrypted_msg = await set_msg(login, msg, algo, request.hostname)
+    except Exception as ex:
+        print(traceback.format_exc())
+        return Verdict.DOWN('DOWN')
 
     if decrypted_msg != msg:
-        return Verdict.DOWN("XOR doesn't work", "XOR doesn't work")
-    if login not in await get_logins(algo, request.hostname):
-        return Verdict.MUMBLE("Can't find login", "Can't find login")
+        return Verdict.DOWN("XOR doesn't work")
+    try:
+        if login not in await get_logins(algo, request.hostname):
+            return Verdict.MUMBLE("Can't find login")
+    except Exception as ex:
+        print(traceback.format_exc())
+        return Verdict.DOWN('DOWN')
+
     return Verdict.OK("{}:{}".format(login.hex(), key))
 
 
 @checker.define_get(vuln_num=2)
 async def get_flag_xor(request: GetRequest) -> Verdict:
     algo = utils_pb2.Algo.XOR
-    login, key = request.flag_id.split(':')
-    login, key = bytes.fromhex(login), int(key)
 
-    if login not in await get_logins(algo, request.hostname):
-        return Verdict.MUMBLE("Can't find login", "Can't find login")
+    try:
+        login, key = request.flag_id.split(':')
+        login, key = bytes.fromhex(login), int(key)
 
-    flag = await get_msg(login, key, algo, request.hostname)
+        if login not in await get_logins(algo, request.hostname):
+            return Verdict.MUMBLE("Can't find login")
+    except Exception as ex:
+        print(traceback.format_exc())
+        return Verdict.DOWN('DOWN')
+
+    try:
+        flag = await get_msg(login, key, algo, request.hostname)
+    except Exception as ex:
+        print(traceback.format_exc())
+        return Verdict.DOWN('DOWN')
+
     if flag != extend_flag(request.flag).encode():
-        return Verdict.MUMBLE("XOR doesn't work", "XOR doesn't work")
+        return Verdict.MUMBLE("XOR doesn't work")
     return Verdict.OK()
 
 

@@ -26,7 +26,6 @@ router.get('/', async function(req, resp, next) {
         tasks = await req.app.get('orm').tables.tasks.filter({
                                 planner: planner.id, week: week, year: year
                             });
-    console.log(tasks);
     resp.json(tasks);
 });
 
