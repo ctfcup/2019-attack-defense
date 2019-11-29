@@ -23,7 +23,9 @@ namespace medlink
                         .UseContentRoot(Directory.GetCurrentDirectory())
                         .UseKestrel(options =>
                         {
+#if DEBUG
                             options.Listen(IPAddress.Loopback, 5002);
+#endif
                         })
                         .UseStartup<Startup>();
                 });
