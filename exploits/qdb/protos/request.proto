@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package crypto;
+import "protos/utils.proto";
+
+message Request {
+    repeated Qubit qubits = 1;
+    repeated Gate gates = 2;
+    optional Option option = 3;
+    required Algo algo = 4;
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package crypto;
+import "protos/utils.proto";
+
+message Logins {
+    repeated bytes name = 1;
+}
+
+extend Option {
+    optional Logins LOGINS = 10;
+}

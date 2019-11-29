@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package crypto;
+import "protos/utils.proto";
+
+message GetMsgRequest {
+    required bytes login = 1;
+}
+
+message GetMsgResponse {
+    required bytes msg = 1;
+}
+
+extend Option {
+    optional GetMsgRequest GET_MSG_REQUEST = 13;
+    optional GetMsgResponse GET_MSG_RESPONSE = 14;
+}
