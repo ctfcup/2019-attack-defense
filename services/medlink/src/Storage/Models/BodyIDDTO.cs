@@ -4,5 +4,6 @@
     {
         public string Series { get; set; }
         public string Revision { get; set; }
+        
     }
 }

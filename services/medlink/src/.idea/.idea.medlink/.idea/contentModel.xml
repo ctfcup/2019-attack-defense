@@ -98,6 +98,10 @@
         <e p="TelemetryController.cs" t="Include" />
         <e p="TemplateController.cs" t="Include" />
       </e>
+      <e p="data" t="Include">
+        <e p="series" t="Include" />
+        <e p="sessions" t="Include" />
+      </e>
       <e p="HealthChecks" t="Include">
         <e p="HealthChecker.cs" t="Include" />
         <e p="IHealthChecker.cs" t="Include" />
@@ -105,12 +109,13 @@
       <e p="Helpers" t="Include">
         <e p="Extensions.cs" t="Include" />
         <e p="ISerializer.cs" t="Include" />
+        <e p="ISessionSource.cs" t="Include" />
         <e p="ISettings.cs" t="Include" />
         <e p="Serializer.cs" t="Include" />
+        <e p="SessionSource.cs" t="Include" />
         <e p="Settings.cs" t="Include" />
         <e p="Utils.cs" t="Include" />
       </e>
-      <e p="ISessionSource.cs" t="Include" />
       <e p="medlink.csproj" t="IncludeRecursive" />
       <e p="medlink.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive">
@@ -131,7 +136,6 @@
       <e p="Properties" t="Include">
         <e p="launchSettings.json" t="Include" />
       </e>
-      <e p="SessionSource.cs" t="Include" />
       <e p="Startup.cs" t="Include" />
       <e p="Storage" t="Include">
         <e p="BaseStorage.cs" t="Include" />
