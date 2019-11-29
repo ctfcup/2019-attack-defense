@@ -1,4 +1,5 @@
-from __future__ import print_function
+#!/usr/bin/env python3.7
+
 import random
 from client import *
 

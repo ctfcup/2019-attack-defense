@@ -1,0 +1,6 @@
+aiohttp
+aioredis
+gunicorn
+numpy
+protobuf==3.10.1
+pycryptodome
