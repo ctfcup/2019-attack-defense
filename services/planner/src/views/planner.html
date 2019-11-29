@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div id="planner">
+        <div class="container">
+            <div class="row">
+                <div class="wrap-headline">
+                    <h1 class="text-center">Planner "{{ planner_name }}"</h1>
+                    
+                    <div class="form-group col-sm-offset-5">
+                        <div class="input-group">
+                            <h3><input type='text' id='weeklyDatePicker' placeholder="Select Week"/></h3>
+                        </div>
+                    </div>
+                    
+                    <table class="table col-xs-4 table-hover" id="tasks-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                {% for week_day in week_days %}
+                                <th>{{week_day}}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for hour in hours %}
+                            <tr name="{{ hour }}">
+                                <td>{{ hour }}</td>
+                                {% for week_day in week_days %}
+                                <td id="{{ week_day }}" name="{{loop.index}}">
+                                    <div class="btn btn-block btn-large"
+                                            data-toggle="modal" data-target="#add-task" style="border-spacing: 0;">
+                                        &nbsp;
+                                    </div>
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="add-task" tabindex="-1" role="dialog" aria-labelledby="add-task-title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="modal-h">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-title" id="add-task-title">
+                        <h3>Set new task on <span id="add-task-day"></span> at <span id="add-task-hour"></span></h3>
+                    </div>
+                </div>
+                <div class="modal-body" id="modal-b">
+                    <form id="add-task-form">
+                        <div class="form-group">
+                            <label class="form-control-label">Name:</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Description:</label>
+                            <textarea class="form-control" id="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id="modal-f">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="add-task-save-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_js %}
+    <script>
+        function getTasks(w=moment(new Date(), 'DD.MM.YYYY').week(), y=moment(new Date(), 'DD.MM.YYYY').year()) {
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: window.location.pathname + '/tasks?week=' + w + '&year=' + y,
+                cache: false
+            }).done(function(tasks) { 
+                tasks.forEach(t => $("[name='"+t.time+"'] #"+t.day+" div").text(t.name))
+            })
+            .fail(function(xhr) {alert(xhr.status)} )
+        }
+        getTasks();
+    </script>
+{% endblock %}

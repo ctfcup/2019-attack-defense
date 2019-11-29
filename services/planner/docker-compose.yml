@@ -1,0 +1,21 @@
+version: '3'
+services:
+    mysql:
+        image: mariadb:10
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: db
+            MYSQL_USER: planner
+            MYSQL_PASSWORD: planner
+        volumes:
+            - ./mysql:/var/lib/mysql
+            
+    planner:
+        build: .
+        depends_on:
+            - mysql
+        restart: "always"
+        ports:
+            - "1337:1337"
+        links:
+            - mysql

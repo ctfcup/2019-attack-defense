@@ -1,0 +1,48 @@
+- hosts: checkers
+  tasks:
+  - name: sync catalog
+    synchronize: src="../checkers" dest="{{cs_dir}}"
+    tags: sync
+
+  - name: checkers owner
+    file:
+      path: "{{cs_dir}}/checkers"
+      owner: "{{cs_user}}"
+      group: "{{cs_user}}"
+      recurse: yes
+    tags: sync
+
+  - name: install sys deps
+    apt:
+      name:
+        - g++
+        - make
+        - libboost-all-dev
+        - python3.7
+        - python3-pip
+        - python3.7-dev
+        - python3-setuptools
+        - libssl-dev
+        - openjdk-11-jre-headless
+        - openjdk-11-jdk-headless
+      install_recommends: no
+
+  - name: set python3.7 as default
+    command: update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
+
+  - name: python deps
+    pip:
+      executable: pip3
+      name:
+        - requests
+        - pycrypto
+        - pillow
+        - aiohttp
+        - numpy
+
+  - name: build engine checker
+    command: ./build.sh
+    args:
+      chdir: "{{cs_dir}}/checkers/engine"
+    become: yes
+    become_user: "{{cs_user}}"
