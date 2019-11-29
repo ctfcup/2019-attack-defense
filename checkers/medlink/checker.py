@@ -7,7 +7,7 @@ from gornilo import CheckRequest, Verdict, Checker, PutRequest, GetRequest
 checker = Checker()
 
 @checker.define_check
-async def check_service(request: CheckRequest) -> Verdict:
+def check_service(request: CheckRequest) -> Verdict:
     try:
         vendor = register_vendor(request.hostname)
 
@@ -75,7 +75,7 @@ async def check_service(request: CheckRequest) -> Verdict:
 
 
 @checker.define_put(vuln_num=1, vuln_rate=1)
-async def put_flag_into_the_service(request: PutRequest) -> Verdict:
+def put_flag_into_the_service(request: PutRequest) -> Verdict:
     try:
         user = register_user(request.hostname)
         user_session = user["session"]
@@ -100,7 +100,7 @@ async def put_flag_into_the_service(request: PutRequest) -> Verdict:
 
 
 @checker.define_put(vuln_num=2, vuln_rate=1)
-async def put_flag_into_the_service(request: PutRequest) -> Verdict:
+def put_flag_into_the_service(request: PutRequest) -> Verdict:
     try:
         vendor = register_vendor(request.hostname)
         vendor_session = vendor["session"]
@@ -118,7 +118,7 @@ async def put_flag_into_the_service(request: PutRequest) -> Verdict:
 
 
 @checker.define_get(vuln_num=1)
-async def get_flag_from_the_service(request: GetRequest) -> Verdict:
+def get_flag_from_the_service(request: GetRequest) -> Verdict:
     try:
         r_telemetry = get_telemetry(request.hostname, json.loads(request.flag_id)["session"])
 
@@ -131,7 +131,7 @@ async def get_flag_from_the_service(request: GetRequest) -> Verdict:
 
 
 @checker.define_get(vuln_num=2)
-async def get_flag_from_the_service(request: GetRequest) -> Verdict:
+def get_flag_from_the_service(request: GetRequest) -> Verdict:
     try:
         user = json.loads(request.flag_id)
         r_telemetry = get_body(request.hostname, user["session"], user["series"], user["revision"], user["vendorToken"])
