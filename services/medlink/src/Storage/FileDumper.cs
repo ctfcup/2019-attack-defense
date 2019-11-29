@@ -26,8 +26,8 @@ namespace medlink.Storage
                 while (true)
                     try
                     {
-                        File.WriteAllText(filePath, _serializer.Serialize(objectProvider()));
                         await Task.Delay(_settings.DumpInterval);
+                        File.WriteAllText(filePath, _serializer.Serialize(objectProvider()));
                     }
                     catch (Exception e)
                     {
