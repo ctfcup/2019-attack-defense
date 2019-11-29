@@ -35,13 +35,26 @@ def get_bodyid():
 
 
 def get_port():
-    return 44364
+    return 5001
+
+
+def get_telemetry():
+    return {
+        "modelSeries": str(uuid.uuid4()),
+        "revision": "1",
+        "BodyFamilyUUID": str(uuid.uuid4()),
+        "referenceValues": {
+            "heart tem.": 50.0,
+            "oil pressure": 30.0,
+        }
+    }
 
 
 def get_body_model():
     return {
-        "modelSeries": "AzazaTech_1",
-        "bodySeriesFamilyToken": str(uuid.uuid4()),
+        "modelSeries": str(uuid.uuid4()),
+        "revision": "1",
+        "BodyFamilyUUID": str(uuid.uuid4()),
         "referenceValues": {
             "heart tem.": 50.0,
             "oil pressure": 30.0,

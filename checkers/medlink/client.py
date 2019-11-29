@@ -68,11 +68,11 @@ def put_body(addr, session, body_model, token):
         close(DOWN, "HTTP Error", "HTTP error: %s" % e)
 
 
-def get_body(addr, session, model, token):
+def get_body(addr, session, model, revision, token):
     url = 'https://%s:%s/api/bodymodel' % (addr, utils.get_port())
     headers = {'User-Agent': utils.get_user_agent()}
     cookies = {'medlinkToken': session}
-    payload = {'modelSeries': model, 'vendorToken': token}
+    payload = {'modelSeries': model, 'revision': revision, 'vendorToken': token}
     try:
         r = requests.get(url, headers=headers, params=payload, cookies=cookies, verify=False)
 
@@ -101,11 +101,11 @@ def get_supported_bodies(addr, session):
         close(DOWN, "HTTP Error", "HTTP error: %s" % e)
 
 
-def get_model_template(addr, session, model):
+def get_model_template(addr, session, model, revision):
     url = 'https://%s:%s/api/template' % (addr, utils.get_port())
     headers = {'User-Agent': utils.get_user_agent()}
     cookies = {'medlinkToken': session}
-    payload = {'modelSeries': model}
+    payload = {'modelSeries': model, 'revision': revision}
     try:
         r = requests.get(url, headers=headers, params=payload, cookies=cookies, verify=False)
 

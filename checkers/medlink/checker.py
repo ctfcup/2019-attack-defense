@@ -27,19 +27,20 @@ def check(*args):
     put_body(addr, vendor_session, body_model, v_token)
     bodies = get_supported_bodies(addr, vendor_session)
 
-    if body_model["modelSeries"] not in bodies:
+    if {"series": body_model["modelSeries"], "revision": body_model["revision"]} not in bodies:
         close(MUMBLE)
 
-    received = get_body(addr, vendor_session, body_model["modelSeries"], v_token)
+    received = get_body(addr, vendor_session, body_model["modelSeries"], body_model["revision"], v_token)
 
     if body_model["modelSeries"] != received["modelSeries"]:
         close(CORRUPT)
 
     for key in body_model["referenceValues"].keys():
-        if key not in received["referenceValues"] or body_model["referenceValues"][key] != received["referenceValues"][key]:
+        if key not in received["referenceValues"] or body_model["referenceValues"][key] != received["referenceValues"][
+            key]:
             close(CORRUPT)
 
-    template = get_model_template(addr, vendor_session, body_model["modelSeries"])
+    template = get_model_template(addr, vendor_session, body_model["modelSeries"], body_model["revision"])
 
     lower_temp = {v.lower(): v for v in template}
 
@@ -50,11 +51,12 @@ def check(*args):
     user = register_user(addr)
     user_session = user["session"]
     user_model = random.choice(bodies)
-    template = get_model_template(addr, user_session, user_model)
+    template = get_model_template(addr, user_session, user_model["series"], user_model["revision"])
 
     telemetry = {
         "bodyID": utils.get_bodyid(),
-        "bodyModelSeries":user_model,
+        "bodyModelSeries": user_model["series"],
+        "bodyRevision": user_model["revision"],
         "hardwareTelemetry": {}
     }
 
@@ -86,10 +88,12 @@ def put(*args):
     vuln = args[3]
 
     if vuln == 1:
-        put_first_flag(addr, flag)
+        close(OK, put_first_flag(addr, flag))
 
     if vuln == 2:
-        put_second_flag(addr, flag)
+        close(OK, put_second_flag(addr, flag))
+
+    close(CHECKER_ERROR)
 
 
 def get(*args):
@@ -112,11 +116,12 @@ def put_first_flag(addr, flag):
     user_session = user["session"]
     bodies = get_supported_bodies(addr, user_session)
     user_model = random.choice(bodies)
-    template = get_model_template(addr, user_session, user_model)
+    template = get_model_template(addr, user_session, user_model["series"], user_model["revision"])
 
     telemetry = {
         "bodyID": flag,
-        "bodyModelSeries": user_model,
+        "bodyModelSeries": user_model["series"],
+        "bodyRevision": user_model["revision"],
         "hardwareTelemetry": {}
     }
 
@@ -124,7 +129,7 @@ def put_first_flag(addr, flag):
         telemetry["hardwareTelemetry"][parameter] = random.randrange(0, 100)
 
     put_telemetry(addr, user_session, telemetry)
-    close(OK, user_session)
+    return user_session
 
 
 def put_second_flag(addr, flag):
@@ -132,10 +137,10 @@ def put_second_flag(addr, flag):
     vendor_session = vendor["session"]
     v_token = vendor["vendorToken"]
     body_model = utils.get_body_model()
-    body_model["bodySeriesFamilyToken"] = flag
+    body_model["BodyFamilyUUID"] = flag
     put_body(addr, vendor_session, body_model, v_token)
 
-    close(OK, json.dumps({"session":vendor_session, "vendorToken":v_token}))
+    return json.dumps({"session": vendor_session, "vendorToken": v_token, "series": body_model["modelSeries"], "revision": body_model["revision"]})
 
 
 def get_first_flag(addr, flag_id, flag):
@@ -144,13 +149,17 @@ def get_first_flag(addr, flag_id, flag):
     if r_telemetry["bodyID"] != flag:
         close(CORRUPT)
 
+    close(OK)
+
 
 def get_second_flag(addr, flag_id, flag):
-    user = json.load(flag_id)
-    r_telemetry = get_body(addr, user["session"], user["vendorToken"])
+    user = json.loads(flag_id)
+    r_telemetry = get_body(addr, user["session"], user["series"], user["revision"], user["vendorToken"])
 
-    if r_telemetry["bodySeriesFamilyToken"] != flag:
+    if r_telemetry["bodyFamilyUUID"] != flag:
         close(CORRUPT)
+
+    close(OK)
 
 
 def info(*args):
@@ -161,9 +170,15 @@ def not_found(*args):
     print("Unsupported command %s" % argv[1], file=stderr)
     return CHECKER_ERROR
 
+
 COMMANDS = {'check': check, 'put': put, 'get': get, 'info': info}
 
-check("localhost")
+# check("localhost")
+#id1 = put("localhost", 1, "azaza", 1)
+#get("localhost", id1, "azaza", 1)
+
+#id1 = put("localhost", 1, "azaza", 2)
+#get("localhost", id1, "azaza", 2)
 
 if __name__ == '__main__':
     try:
