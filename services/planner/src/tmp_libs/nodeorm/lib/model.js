@@ -13,6 +13,8 @@ class Model {
         return name in this.#fields && typeof(value) == this.#fields[name];
     }
     
+    prechecking(str) { return str.replace(/[<>\\();/]/g, '') }
+    
     getTableName() {
         return this.#table_name;
     }
@@ -30,10 +32,9 @@ class Model {
     }
     
     makeCorrectValues(params) {
-        // place for vulnerability, just delete "g"
         for (let key in params)
             if (typeof(params[key]) == 'string')
-                params[key] = `"${params[key].replace(/[^\w@+-:=. ]/g, "").trim()}"`;
+                params[key] = `"${this.checking(this.prechecking(params[key])).trim()}"`;
         return params;
     }
     
@@ -93,6 +94,8 @@ class Model {
         return answ[0].affectedRows;
     }
 
+    checking(str) { return str.replace(/[^\w@+-:=. ]/, '') }
+    
     async update(filter_params, params) {
         filter_params = this.makeCorrectValues(filter_params);
         params = this.makeCorrectValues(params);
@@ -107,7 +110,6 @@ class Model {
             filter_string = `WHERE ${filter_string.slice(0,-5)}`;
         
         let set_string = '';
-        console.log(params);
         Object.entries(params).forEach(function(el) {
             if (this.isCorrectField(el[0], el[1]))
                 set_string += `${el[0]}=${el[1]},`;

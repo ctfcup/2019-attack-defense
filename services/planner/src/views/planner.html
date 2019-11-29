@@ -24,7 +24,7 @@
                         </thead>
                         <tbody>
                             {% for hour in hours %}
-                            <tr id="{{ hour }}">
+                            <tr name="{{ hour }}">
                                 <td>{{ hour }}</td>
                                 {% for week_day in week_days %}
                                 <td id="{{ week_day }}" name="{{loop.index}}">
@@ -37,7 +37,6 @@
                             </tr>
                             {% endfor %}
                         <tbody>
-                        <script>getTasks();</script>
                     </table>
                 </div>
             </div>
@@ -74,4 +73,21 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block additional_js %}
+    <script>
+        function getTasks(w=moment(new Date(), 'DD.MM.YYYY').week(), y=moment(new Date(), 'DD.MM.YYYY').year()) {
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: window.location.pathname + '/tasks?week=' + w + '&year=' + y,
+                cache: false
+            }).done(function(tasks) { 
+                tasks.forEach(t => $("[name='"+t.time+"'] #"+t.day+" div").text(t.name))
+            })
+            .fail(function(xhr) {alert(xhr.status)} )
+        }
+        getTasks();
+    </script>
 {% endblock %}

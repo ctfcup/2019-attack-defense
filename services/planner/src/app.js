@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require('body-parser');
-const orm = require('NodeORM');
+const orm = require('nodeorm');
 const config = require('./config');
 var swig = require('swig');
 var swig = new swig.Swig();
@@ -12,6 +12,7 @@ orm.setConfig(config.db);
 
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
+
 app.use('/static', express.static(__dirname + '/views/static'));
 app.use('/favicon.ico', express.static(__dirname + 'imgs/favicon.ico'));
 app.set("orm", orm);

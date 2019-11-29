@@ -11,6 +11,7 @@ router.use('/login', auth.optional, require('./handlers/login'));
 router.use('/logout', auth.required, require('./handlers/logout'));
 router.use('/profile', auth.required, require('./handlers/profile'));
 router.use('/planners', auth.required, require('./handlers/planners'));
+router.use('/planners/:planner_id/tasks', auth.required, require('./handlers/tasks'));
 
 
 module.exports = router;

@@ -132,10 +132,6 @@ $(document).ready(function() {
     });
     
     $('#add-task-save-btn').click(function(e) {
-        monthes = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-        offset = monthes.indexOf($("#add-task-day").text())
-        var selected_date = moment($("#weeklyDatePicker").val(), "DD.MM.YYYY");
-        selected_date.date(selected_date.date()+offset)
         $.ajax({
             type: 'POST',
             dataType : 'json',
@@ -143,8 +139,10 @@ $(document).ready(function() {
             url: window.location.pathname,
             cache: false,
             data: JSON.stringify({
+                    "week": moment($("#weeklyDatePicker").val(), "DD.MM.YYYY").week(), 
+                    "year": moment($("#weeklyDatePicker").val(), "DD.MM.YYYY").year(),
+                    "day": $("#add-task-day").text(),
                     "time": $("#add-task-hour").text(), 
-                    "date": selected_date.format('YYYY-MM-DD'), 
                     "name": $("#add-task-form input").val(),
                     "description": $("#add-task-form textarea").val()
                 })
@@ -153,14 +151,3 @@ $(document).ready(function() {
     });
     
 });
-function getTasks() {
-    console.log('OK');
-    $.ajax({
-        type: 'GET',
-        dataType : 'json',
-        contentType: 'application/json; charset=utf-8',
-        url: window.location.pathname + '/tasks',
-        cache: false
-    }).done(function(msg) { alert(msg) } )
-    .fail(function(xhr) {alert(xhr.status)} )
-}

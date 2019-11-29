@@ -184,6 +184,11 @@ th {text-align: center;}
     z-index: -1;
 }
 
+#planner div:hover {
+    color: white;
+    text-decoration: underline;
+}
+
 
 @keyframes neon {
   from {
@@ -205,9 +210,6 @@ th {text-align: center;}
         0 0 60px rgba(255,0,222,1);
   }
 }
-
-
-
 
 .sign-wrap-4 .sign_word span {
     animation: neon-4 linear infinite 5s;
@@ -256,3 +258,5 @@ th {text-align: center;}
 .modal-body{
     background-color: #FFF;
 }
+
+
