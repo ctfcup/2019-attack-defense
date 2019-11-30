@@ -21,7 +21,7 @@ class Handler:
         client_gates = list(map(Gate.from_protobuf, request.gates[:]))
         server_gates = self._bb84.generate_basis()
 
-        bits = self._bb84.recieve(client_qubits, client_gates)
+        bits = self._bb84.recieve(client_qubits, server_gates)
         key = self._bb84.generate_key(server_gates, client_gates, bits)
 
         return server_gates, key
