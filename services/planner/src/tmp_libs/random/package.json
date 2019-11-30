@@ -1,0 +1,11 @@
+{
+  "name": "randomizerous",
+  "version": "0.0.3",
+  "description": "Random seeding lib",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bibozaur & mouse",
+  "license": "MIT"
+}

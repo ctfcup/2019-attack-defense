@@ -1,0 +1,11 @@
+{
+  "name": "node-orm-fluent",
+  "version": "1.3.37",
+  "description": "Fluent human readable lib",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zizn",
+  "license": "MIT"
+}

@@ -50,6 +50,7 @@ export class Login extends Component {
     render() {
         const {login, password, vendorToken} = this.state;
         return <div className='common-form'>
+            <Alert color="info">Sign in or Sign up with uniq login, if you are body vendor, set </Alert>
             <Form onSubmit={this.submitForm} id="loginForm">
                 <FormGroup row>
                     <Label className="label light-purple" for="login" sm={3}>Login</Label>
