@@ -107,9 +107,9 @@ def ensure_success(request):
     try:
         r = request()
     except Exception as e:
-        raise HTTPException(Verdict.DOWN("HTTP error: %s" % e))
+        raise HTTPException(Verdict.DOWN("HTTP error"))
     if r.status_code != 200:
-        raise HTTPException(Verdict.MUMBLE("Invalid status code: %s %d" % (r, r.status_code)))
+        raise HTTPException(Verdict.MUMBLE("Invalid status code: %s" % r.status_code))
     return r
 
 
