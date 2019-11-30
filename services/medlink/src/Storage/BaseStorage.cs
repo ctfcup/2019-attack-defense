@@ -53,7 +53,7 @@ namespace medlink.Storage
         {
             while (true)
             {
-                await Task.Delay(TimeSpan.FromMinutes(1));
+                await Task.Delay(Settings.Ttl);
                 var allfiles = Directory.GetFiles(Folder, "*", SearchOption.AllDirectories);
                 foreach (var file in allfiles)
                     if (DateTime.UtcNow - File.GetCreationTime(file).ToUniversalTime() >= Settings.Ttl)

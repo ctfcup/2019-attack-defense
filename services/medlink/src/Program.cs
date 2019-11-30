@@ -11,8 +11,8 @@ namespace medlink
     {
         public static void Main(string[] args)
         {
-            ThreadPool.SetMaxThreads(32767, 32767);
-            ThreadPool.SetMinThreads(2048, 2048);
+            ThreadPool.SetMaxThreads(128, 128);
+            ThreadPool.SetMinThreads(128, 128);
             
             CreateWebHostBuilder(args).Build().Run();
         }
