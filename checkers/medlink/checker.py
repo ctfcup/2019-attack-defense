@@ -1,6 +1,8 @@
 #!/usr/bin/env python3.7
 
 import random
+import uuid
+
 from client import *
 
 from gornilo import CheckRequest, Verdict, Checker, PutRequest, GetRequest
@@ -80,15 +82,17 @@ def check_service(request: CheckRequest) -> Verdict:
 @checker.define_put(vuln_num=1, vuln_rate=1)
 def put_flag_into_the_service(request: PutRequest) -> Verdict:
     try:
-        user = register_user(request.hostname)
-        user_session = user["session"]
-        bodies = get_supported_bodies(request.hostname, user_session)
+        vendor = register_vendor(request.hostname)
+        vendor_session = vendor["session"]
+        v_token = vendor["vendorToken"]
+        body_model = utils.get_body_model()
+        body_model["BodyFamilyUUID"] = str(uuid.uuid4())
+        put_body(request.hostname, vendor_session, body_model, v_token)
 
-        if len(bodies) == 0:
-            return Verdict.MUMBLE("No bodies supported")
+        user_session = vendor["session"]
 
-        user_model = random.choice(bodies)
-        template = get_model_template(request.hostname, user_session, user_model["series"], user_model["revision"])
+        user_model = {"series": body_model["modelSeries"], "revision": body_model["revision"]}
+        template = get_model_template(request.hostname, user_session, user_model["series"], body_model["revision"])
 
         telemetry = {
             "bodyID": request.flag,

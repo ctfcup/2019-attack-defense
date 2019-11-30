@@ -35,7 +35,7 @@ def get_bodyid():
 
 
 def get_port():
-    return 5001
+    return 5002
 
 
 def get_telemetry():
