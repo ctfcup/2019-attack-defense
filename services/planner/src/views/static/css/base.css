@@ -259,4 +259,8 @@ th {text-align: center;}
     background-color: #FFF;
 }
 
+.bootstrap-datetimepicker-widget, #weeklyDatePicker {
+    background-color: #000;
+    color: #FFF;
+}
 

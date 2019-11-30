@@ -40,7 +40,7 @@ $(document).ready(function() {
         }).done(function() {
             location.reload();
         }).fail(function(xhr) {
-            alert(xhr.status)
+            location.reload();
         });
         e.preventDefault(); 
     });
@@ -55,7 +55,6 @@ $(document).ready(function() {
     
     $('#signup').submit(function(e) {
         var $form = $(this);
-        // if ($("input[name=login]").val())
         $.ajax({
             type: 'POST',
             url: '/registration',
@@ -63,7 +62,7 @@ $(document).ready(function() {
         }).done(function() {
             location.reload();
         }).fail(function(xhr) {
-            alert(xhr.status)
+            location.reload();
         });
         e.preventDefault(); 
     });
@@ -81,7 +80,7 @@ $(document).ready(function() {
             cache: false,
             data: JSON.stringify(s_data)
         }).done(function(msg) { location.reload(); } )
-        .fail(function(xhr) {alert(xhr.status)} )
+        .fail(function(xhr) {location.reload();} )
         e.preventDefault(); 
     });
     
@@ -118,7 +117,7 @@ $(document).ready(function() {
                     "creationTime": $("#planner-cr-time").html()
                 })
         }).done(function(msg) { location.reload(); } )
-        .fail(function(xhr) {alert(xhr.status)} )
+        .fail(function(xhr) {location.reload();} )
     });
     
     $("#planners-table tr").click(function(e){
@@ -127,7 +126,7 @@ $(document).ready(function() {
     
     $('#add-task').on('show.bs.modal', function(e) {
         let t = e.relatedTarget;
-        $('#add-task-hour').text(t.parentNode.parentNode.id);
+        $('#add-task-hour').text(t.parentNode.parentNode.attributes.name.value);
         $('#add-task-day').text(t.parentNode.id);
     });
     
@@ -146,8 +145,8 @@ $(document).ready(function() {
                     "name": $("#add-task-form input").val(),
                     "description": $("#add-task-form textarea").val()
                 })
-        }).done(function(msg) { location.reload(); } )
-        .fail(function(xhr) {alert(xhr.status)} )
+        })
+        .fail(function(xhr) { location.reload(); )
     });
     
 });

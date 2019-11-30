@@ -1,5 +1,5 @@
 'use strict';
-const random = require("random").Random;
+const random = require("randomizerous").Random;
 
 class Authenticator {
     #sessions = {};
