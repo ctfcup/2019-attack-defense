@@ -100,18 +100,34 @@
       </e>
       <e p="data" t="Include">
         <e p="diagnostic" t="Include">
-          <e p="645c5b39-748a-43fd-bc2c-9a0632c0fb38" t="Include">
+          <e p="2768c4ff-3164-47da-8b4c-848a255634bb" t="Include">
             <e p="1" t="Include" />
           </e>
-          <e p="d378aa86-dc22-4744-ad1e-8ac841a730c0" t="Include">
+          <e p="800941bc-fd6d-4f8e-9cdf-a28458006dee" t="Include">
+            <e p="1" t="Include" />
+          </e>
+          <e p="9c0bce07-fb56-4203-a2d3-ef67cb317bd7" t="Include">
+            <e p="1" t="Include" />
+          </e>
+          <e p="b6f882b1-15c5-4075-a134-45c812cd6e1d" t="Include">
+            <e p="1" t="Include" />
+          </e>
+          <e p="c7621794-fa19-4f87-9d25-b34f456e19fa" t="Include">
+            <e p="1" t="Include" />
+          </e>
+          <e p="d4436076-2953-49bf-902f-7c5fcf45f27b" t="Include">
             <e p="1" t="Include" />
           </e>
         </e>
         <e p="series" t="Include" />
         <e p="sessions" t="Include" />
         <e p="telemetry" t="Include">
-          <e p="66760b66-6b58-4a91-a6b8-671a8170f071" t="Include" />
-          <e p="968e10f4-bf0c-4e14-8960-2d78fc3da1a6" t="Include" />
+          <e p="2e0b84a1-2307-4d10-8b3f-fbc188a90832" t="Include" />
+          <e p="323a40b2-c1ec-4b57-a149-2326c307ad4d" t="Include" />
+          <e p="40612817-8bdc-477b-8906-6340bc0c8795" t="Include" />
+          <e p="48b8f968-b477-49c2-918c-850170fc01ae" t="Include" />
+          <e p="5f6c43d7-fc68-41ec-a15e-dc22aa47cbfd" t="Include" />
+          <e p="a08d354a-4256-43c5-b247-9e81e508b877" t="Include" />
         </e>
         <e p="Users" t="Include" />
         <e p="vendors" t="Include" />
