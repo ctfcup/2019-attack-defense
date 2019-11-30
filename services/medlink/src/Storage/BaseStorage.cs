@@ -18,8 +18,6 @@ namespace medlink.Storage
             Folder = folder;
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
-            
-            StartCleanup().ConfigureAwait(false);
         }
 
 
@@ -47,18 +45,6 @@ namespace medlink.Storage
 
         protected virtual void OnAdd(TValue info, string filename)
         {
-        }
-
-        private async Task StartCleanup()
-        {
-            while (true)
-            {
-                await Task.Delay(Settings.Ttl);
-                var allfiles = Directory.GetFiles(Folder, "*", SearchOption.AllDirectories);
-                foreach (var file in allfiles)
-                    if (DateTime.UtcNow - File.GetCreationTime(file).ToUniversalTime() >= Settings.Ttl)
-                        File.Delete(file);
-            }
         }
 
         private string GetPath(string name)

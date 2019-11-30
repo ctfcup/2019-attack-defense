@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c5be547-e27c-4794-80b5-10f1f3fdfd39" name="Default Changelist" comment="[medlink] decrease thread-pool">
-      <change beforePath="$PROJECT_DIR$/../../../checkers/medlink/checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../checkers/medlink/checker.py" afterDir="false" />
+    <list default="true" id="5c5be547-e27c-4794-80b5-10f1f3fdfd39" name="Default Changelist" comment="[medlink] more fixes">
       <change beforePath="$PROJECT_DIR$/../../../checkers/medlink/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../checkers/medlink/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.medlink/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.medlink/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.medlink/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.medlink/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/FileBasedIndex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/FileBasedIndex.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/FileDumper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/FileDumper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,13 +66,11 @@
         <option value="$PROJECT_DIR$/Controllers/HealthCheckController.cs" />
         <option value="$PROJECT_DIR$/HealthChecks/HealthChecker.cs" />
         <option value="$PROJECT_DIR$/Storage/Interfaces/IBodyModelsStorage.cs" />
-        <option value="$PROJECT_DIR$/Controllers/TemplateController.cs" />
         <option value="$PROJECT_DIR$/Storage/BodyDiagnosticStorage.cs" />
         <option value="$PROJECT_DIR$/Storage/Indices/PasswordsByUsers.cs" />
         <option value="$PROJECT_DIR$/Storage/Indices/Sessions.cs" />
         <option value="$PROJECT_DIR$/Storage/Indices/VendorInfos.cs" />
         <option value="$PROJECT_DIR$/Helpers/Extensions.cs" />
-        <option value="$PROJECT_DIR$/Helpers/Settings.cs" />
         <option value="$PROJECT_DIR$/Controllers/BodyModelController.cs" />
         <option value="$PROJECT_DIR$/Storage/Interfaces/IFileBasedIndex.cs" />
         <option value="$PROJECT_DIR$/SessionSource.cs" />
@@ -83,12 +78,15 @@
         <option value="$PROJECT_DIR$/ClientApp/src/components/Login.js" />
         <option value="$PROJECT_DIR$/Storage/Models/BodyIDDTO.cs" />
         <option value="$PROJECT_DIR$/Storage/Interfaces/ISeriesIndex.cs" />
-        <option value="$PROJECT_DIR$/Storage/BodyModelsStorage.cs" />
         <option value="$PROJECT_DIR$/Storage/SeriesIndex.cs" />
-        <option value="$PROJECT_DIR$/Storage/BaseStorage.cs" />
         <option value="$PROJECT_DIR$/Program.cs" />
         <option value="$PROJECT_DIR$/Storage/FileDumper.cs" />
+        <option value="$PROJECT_DIR$/Storage/BaseStorage.cs" />
+        <option value="$PROJECT_DIR$/Controllers/TemplateController.cs" />
+        <option value="$PROJECT_DIR$/Helpers/Settings.cs" />
         <option value="$PROJECT_DIR$/Storage/FileBasedIndex.cs" />
+        <option value="$PROJECT_DIR$/Storage/BodyModelsStorage.cs" />
+        <option value="$PROJECT_DIR$/Storage/BodyTelemetryStorage.cs" />
       </list>
     </option>
   </component>
@@ -167,7 +165,8 @@
       <updated>1575056404766</updated>
       <workItem from="1575056412072" duration="999000" />
       <workItem from="1575042603546" duration="15369000" />
-      <workItem from="1575061187854" duration="2514000" />
+      <workItem from="1575061187854" duration="6245000" />
+      <workItem from="1575076522228" duration="9358000" />
     </task>
     <task id="LOCAL-00001" summary="[medlink] tune setting, threadpool\gc, make code less shitty, add ttl to index records">
       <created>1575051084418</created>
@@ -204,7 +203,28 @@
       <option name="project" value="LOCAL" />
       <updated>1575061830120</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="[medlink] fix stuppid">
+      <created>1575063946833</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575063946833</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[medlink] remove cleanup code">
+      <created>1575081768446</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575081768447</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[medlink] more fixes">
+      <created>1575083053319</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575083053319</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +235,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/d.lukshto/sources/ctfcup/ctfcup-2019-AD/services/medlink/src" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -224,6 +269,11 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[medlink] tune setting, threadpool\gc, make code less shitty, add ttl to index records" />
@@ -231,134 +281,149 @@
     <MESSAGE value="[medlink] fix dummy bugs" />
     <MESSAGE value="[medlink] fix stupid bug" />
     <MESSAGE value="[medlink] decrease thread-pool" />
-    <option name="LAST_COMMIT_MESSAGE" value="[medlink] decrease thread-pool" />
+    <MESSAGE value="[medlink] fix stuppid" />
+    <MESSAGE value="[medlink] remove cleanup code" />
+    <MESSAGE value="[medlink] more fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="[medlink] more fixes" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="477" y="186" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575066793300">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state x="477" y="186" key="#com.intellij.fileTypes.FileTypeChooser/62.0.1304.768@62.0.1304.768" timestamp="1575066793300" />
     <state width="452" height="466" key="DebuggerActiveHint" timestamp="1575063763159">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
     <state width="452" height="466" key="DebuggerActiveHint/62.0.1304.768@62.0.1304.768" timestamp="1575063763159" />
-    <state width="1261" height="192" key="GridCell.Tab.0.bottom" timestamp="1575063856139">
+    <state x="154" y="92" width="1120" height="584" key="DiffContextDialog" timestamp="1575081975439">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="192" key="GridCell.Tab.0.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575063856139" />
-    <state width="1261" height="192" key="GridCell.Tab.0.center" timestamp="1575063856138">
+    <state x="154" y="92" width="1120" height="584" key="DiffContextDialog/62.0.1304.768@62.0.1304.768" timestamp="1575081975439" />
+    <state width="1261" height="191" key="GridCell.Tab.0.bottom" timestamp="1575083172900">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="192" key="GridCell.Tab.0.center/62.0.1304.768@62.0.1304.768" timestamp="1575063856138" />
-    <state width="1261" height="192" key="GridCell.Tab.0.left" timestamp="1575063856138">
+    <state width="1261" height="191" key="GridCell.Tab.0.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575083172900" />
+    <state width="1261" height="191" key="GridCell.Tab.0.center" timestamp="1575083172900">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="192" key="GridCell.Tab.0.left/62.0.1304.768@62.0.1304.768" timestamp="1575063856138" />
-    <state width="1261" height="192" key="GridCell.Tab.0.right" timestamp="1575063856138">
+    <state width="1261" height="191" key="GridCell.Tab.0.center/62.0.1304.768@62.0.1304.768" timestamp="1575083172900" />
+    <state width="1261" height="191" key="GridCell.Tab.0.left" timestamp="1575083172900">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="192" key="GridCell.Tab.0.right/62.0.1304.768@62.0.1304.768" timestamp="1575063856138" />
-    <state width="1261" height="239" key="GridCell.Tab.1.bottom" timestamp="1575063850466">
+    <state width="1261" height="191" key="GridCell.Tab.0.left/62.0.1304.768@62.0.1304.768" timestamp="1575083172900" />
+    <state width="1261" height="191" key="GridCell.Tab.0.right" timestamp="1575083172900">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.1.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575063850466" />
-    <state width="1261" height="239" key="GridCell.Tab.1.center" timestamp="1575063850466">
+    <state width="1261" height="191" key="GridCell.Tab.0.right/62.0.1304.768@62.0.1304.768" timestamp="1575083172900" />
+    <state width="1261" height="236" key="GridCell.Tab.1.bottom" timestamp="1575075740119">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.1.center/62.0.1304.768@62.0.1304.768" timestamp="1575063850466" />
-    <state width="1261" height="239" key="GridCell.Tab.1.left" timestamp="1575063850465">
+    <state width="1261" height="236" key="GridCell.Tab.1.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575075740119" />
+    <state width="1261" height="236" key="GridCell.Tab.1.center" timestamp="1575075740119">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.1.left/62.0.1304.768@62.0.1304.768" timestamp="1575063850465" />
-    <state width="1261" height="239" key="GridCell.Tab.1.right" timestamp="1575063850466">
+    <state width="1261" height="236" key="GridCell.Tab.1.center/62.0.1304.768@62.0.1304.768" timestamp="1575075740119" />
+    <state width="1261" height="236" key="GridCell.Tab.1.left" timestamp="1575075740118">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.1.right/62.0.1304.768@62.0.1304.768" timestamp="1575063850466" />
-    <state width="1261" height="239" key="GridCell.Tab.2.bottom" timestamp="1575063850467">
+    <state width="1261" height="236" key="GridCell.Tab.1.left/62.0.1304.768@62.0.1304.768" timestamp="1575075740118" />
+    <state width="1261" height="236" key="GridCell.Tab.1.right" timestamp="1575075740119">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.2.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575063850467" />
-    <state width="1261" height="239" key="GridCell.Tab.2.center" timestamp="1575063850467">
+    <state width="1261" height="236" key="GridCell.Tab.1.right/62.0.1304.768@62.0.1304.768" timestamp="1575075740119" />
+    <state width="1261" height="236" key="GridCell.Tab.2.bottom" timestamp="1575075740122">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.2.center/62.0.1304.768@62.0.1304.768" timestamp="1575063850467" />
-    <state width="1261" height="239" key="GridCell.Tab.2.left" timestamp="1575063850466">
+    <state width="1261" height="236" key="GridCell.Tab.2.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575075740122" />
+    <state width="1261" height="236" key="GridCell.Tab.2.center" timestamp="1575075740121">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.2.left/62.0.1304.768@62.0.1304.768" timestamp="1575063850466" />
-    <state width="1261" height="239" key="GridCell.Tab.2.right" timestamp="1575063850467">
+    <state width="1261" height="236" key="GridCell.Tab.2.center/62.0.1304.768@62.0.1304.768" timestamp="1575075740121" />
+    <state width="1261" height="236" key="GridCell.Tab.2.left" timestamp="1575075740121">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.2.right/62.0.1304.768@62.0.1304.768" timestamp="1575063850467" />
-    <state width="1261" height="239" key="GridCell.Tab.3.bottom" timestamp="1575063850468">
+    <state width="1261" height="236" key="GridCell.Tab.2.left/62.0.1304.768@62.0.1304.768" timestamp="1575075740121" />
+    <state width="1261" height="236" key="GridCell.Tab.2.right" timestamp="1575075740121">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.3.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575063850468" />
-    <state width="1261" height="239" key="GridCell.Tab.3.center" timestamp="1575063850468">
+    <state width="1261" height="236" key="GridCell.Tab.2.right/62.0.1304.768@62.0.1304.768" timestamp="1575075740121" />
+    <state width="1261" height="236" key="GridCell.Tab.3.bottom" timestamp="1575075740123">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.3.center/62.0.1304.768@62.0.1304.768" timestamp="1575063850468" />
-    <state width="1261" height="239" key="GridCell.Tab.3.left" timestamp="1575063850467">
+    <state width="1261" height="236" key="GridCell.Tab.3.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575075740123" />
+    <state width="1261" height="236" key="GridCell.Tab.3.center" timestamp="1575075740122">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.3.left/62.0.1304.768@62.0.1304.768" timestamp="1575063850467" />
-    <state width="1261" height="239" key="GridCell.Tab.3.right" timestamp="1575063850468">
+    <state width="1261" height="236" key="GridCell.Tab.3.center/62.0.1304.768@62.0.1304.768" timestamp="1575075740122" />
+    <state width="1261" height="236" key="GridCell.Tab.3.left" timestamp="1575075740122">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.3.right/62.0.1304.768@62.0.1304.768" timestamp="1575063850468" />
-    <state width="1261" height="239" key="GridCell.Tab.4.bottom" timestamp="1575063850469">
+    <state width="1261" height="236" key="GridCell.Tab.3.left/62.0.1304.768@62.0.1304.768" timestamp="1575075740122" />
+    <state width="1261" height="236" key="GridCell.Tab.3.right" timestamp="1575075740123">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.4.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575063850469" />
-    <state width="1261" height="239" key="GridCell.Tab.4.center" timestamp="1575063850469">
+    <state width="1261" height="236" key="GridCell.Tab.3.right/62.0.1304.768@62.0.1304.768" timestamp="1575075740123" />
+    <state width="1261" height="236" key="GridCell.Tab.4.bottom" timestamp="1575075740125">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.4.center/62.0.1304.768@62.0.1304.768" timestamp="1575063850469" />
-    <state width="1261" height="239" key="GridCell.Tab.4.left" timestamp="1575063850469">
+    <state width="1261" height="236" key="GridCell.Tab.4.bottom/62.0.1304.768@62.0.1304.768" timestamp="1575075740125" />
+    <state width="1261" height="236" key="GridCell.Tab.4.center" timestamp="1575075740124">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.4.left/62.0.1304.768@62.0.1304.768" timestamp="1575063850469" />
-    <state width="1261" height="239" key="GridCell.Tab.4.right" timestamp="1575063850469">
+    <state width="1261" height="236" key="GridCell.Tab.4.center/62.0.1304.768@62.0.1304.768" timestamp="1575075740124" />
+    <state width="1261" height="236" key="GridCell.Tab.4.left" timestamp="1575075740124">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state width="1261" height="239" key="GridCell.Tab.4.right/62.0.1304.768@62.0.1304.768" timestamp="1575063850469" />
+    <state width="1261" height="236" key="GridCell.Tab.4.left/62.0.1304.768@62.0.1304.768" timestamp="1575075740124" />
+    <state width="1261" height="236" key="GridCell.Tab.4.right" timestamp="1575075740125">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state width="1261" height="236" key="GridCell.Tab.4.right/62.0.1304.768@62.0.1304.768" timestamp="1575075740125" />
     <state x="511" y="83" key="RiderGenerateDialog" timestamp="1575063839855">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
     <state x="511" y="83" key="RiderGenerateDialog/62.0.1304.768@62.0.1304.768" timestamp="1575063839855" />
-    <state x="306" y="116" key="Vcs.Push.Dialog.v2" timestamp="1575061497267">
+    <state x="497" y="94" key="RollbackChangesDialog" timestamp="1575081586406">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state x="306" y="116" key="Vcs.Push.Dialog.v2/62.0.1304.768@62.0.1304.768" timestamp="1575061497267" />
-    <state x="377" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1575063322530">
+    <state x="497" y="94" key="RollbackChangesDialog/62.0.1304.768@62.0.1304.768" timestamp="1575081586406" />
+    <state x="306" y="116" key="Vcs.Push.Dialog.v2" timestamp="1575081982462">
       <screen x="62" y="0" width="1304" height="768" />
     </state>
-    <state x="377" y="89" width="672" height="678" key="search.everywhere.popup/62.0.1304.768@62.0.1304.768" timestamp="1575063322530" />
+    <state x="306" y="116" key="Vcs.Push.Dialog.v2/62.0.1304.768@62.0.1304.768" timestamp="1575081982462" />
+    <state x="377" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1575084657602">
+      <screen x="62" y="0" width="1304" height="768" />
+    </state>
+    <state x="377" y="89" width="672" height="678" key="search.everywhere.popup/62.0.1304.768@62.0.1304.768" timestamp="1575084657602" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Storage/FileBasedIndex.cs</url>
-          <line>100</line>
+          <line>77</line>
           <properties documentPath="$PROJECT_DIR$/Storage/FileBasedIndex.cs" initialLine="100">
             <startOffsets>
-              <option value="3036" />
+              <option value="2327" />
             </startOffsets>
             <endOffsets>
-              <option value="3039" />
+              <option value="2330" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Storage/FileBasedIndex.cs</url>
-          <line>55</line>
-          <properties documentPath="$PROJECT_DIR$/Storage/FileBasedIndex.cs" initialLine="55">
+          <url>file://$PROJECT_DIR$/Controllers/TemplateController.cs</url>
+          <line>31</line>
+          <properties documentPath="$PROJECT_DIR$/Controllers/TemplateController.cs" initialLine="31">
             <startOffsets>
-              <option value="1759" />
+              <option value="1029" />
             </startOffsets>
             <endOffsets>
-              <option value="1775" />
+              <option value="1072" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

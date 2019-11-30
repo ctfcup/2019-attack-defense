@@ -44,7 +44,8 @@ def put_body(addr, session, body_model, token):
     headers = {'User-Agent': utils.get_user_agent()}
     cookies = {'medlinkToken': session}
     payload = {'vendorToken': token}
-    r = ensure_success(lambda: requests.put(url, headers=headers, json=body_model, params=payload, cookies=cookies, verify=False))
+    r = ensure_success(
+        lambda: requests.put(url, headers=headers, json=body_model, params=payload, cookies=cookies, verify=False))
 
 
 def get_body(addr, session, model, revision, token):
@@ -72,9 +73,21 @@ def get_model_template(addr, session, model, revision):
     cookies = {'medlinkToken': session}
     payload = {'modelSeries': model, 'revision': revision}
 
-    r = ensure_success(lambda: requests.get(url, headers=headers, params=payload, cookies=cookies, verify=False))
+    i = 0
 
-    return json.loads(r.content.decode("UTF-8"))
+    while i < 3:
+        r = ensure_success(lambda: requests.get(url, headers=headers, params=payload, cookies=cookies, verify=False))
+        conent = r.content.decode("UTF-8")
+        try:
+            if conent != None:
+                return json.loads(conent)
+        except Exception:
+            print(i)
+
+        i += 1
+        print(r)
+
+        return Verdict.CHECKER_ERROR("Check api/template or cleanup folder and restart container :)")
 
 
 def put_telemetry(addr, session, telemetry):
@@ -107,9 +120,9 @@ def ensure_success(request):
     try:
         r = request()
     except Exception as e:
-        raise HTTPException(Verdict.DOWN("HTTP error: %s" % e))
+        raise HTTPException(Verdict.DOWN("HTTP error"))
     if r.status_code != 200:
-        raise HTTPException(Verdict.MUMBLE("Invalid status code: %s %d" % (r, r.status_code)))
+        raise HTTPException(Verdict.MUMBLE("Invalid status code: %s" % r.status_code))
     return r
 
 

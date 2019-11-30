@@ -31,9 +31,9 @@ cs_admin_auth: root:QTHkyt0E4vca
 cs_ctf_name: CupCTF 2019 AD
 cs_flags_secret: WFd3yCdQ5cez
 cs_round_length: 60
-cs_flag_life_time: 15
-cs_time: "['2019-11-20 10:00:00', '2019-12-01 17:00:00']"
-# cs_time: "['2019-11-30 11:00:00', '2019-11-23 16:59:50']"
+cs_flag_life_time: 10
+cs_time: "['2019-11-30 11:30:00', '2019-11-30 15:59:59']"
+#cs_time: "['2019-11-20 10:00:00', '2019-12-01 17:00:00']"
 #cs_time: "['2019-10-15 10:00:00', '2019-10-15 17:00:00'], ['2019-10-16 10:00:00', '2019-10-16 17:00:00'], ['2019-10-17 07:59:59', '2019-10-17 15:59:00']"
 
 cs_static_path: '/home/cs/ctf-scoreboard-client/scoreboard/build'
@@ -42,13 +42,19 @@ cs_checkers_hostname_cb: |
   sub { my ($team, $service) = @_; $service->{host_suffix} ? "$team->{host_prefix}$service->{host_suffix}" : "$team->{host}" }
 
 teams: |
-  {name => 'vbteam10', network => '10.60.10.0/24', host => '10.60.10.0', host_prefix => '10.60.10.', token => 'aaaaaa'},
-  {name => 'vbteam11', network => '10.60.11.0/24', host => '10.60.11.0', host_prefix => '10.60.11.', token => 'bbbbbb'},
+  {name => 'CatchFM', network => '10.60.1.0/24', host => '10.60.1.0', host_prefix => '10.60.1.', token => '71dd3464-da47-4f32-9614-54394e45e65d', logo => '/data/logos/01_catchfm'},
+  {name => '[SPbCTF] fargate', network => '10.60.2.0/24', host => '10.60.2.0', host_prefix => '10.60.2.', token => 'a1fc4b50-f6e5-49f8-867f-a5e9931d7004', logo => '/data/logos/02_spbctf-fargate'},
+  {name => 'kks', network => '10.60.6.0/24', host => '10.60.6.0', host_prefix => '10.60.6.', token => 'fb766b60-e1fc-43fe-b97a-c5249f25be11', logo => '/data/logos/06_kks'},
+  {name => 'YummyTacos', network => '10.60.4.0/24', host => '10.60.4.0', host_prefix => '10.60.4.', token => 'd50867c6-c4b4-4cec-b454-26f1680e37d1', logo => '/data/logos/04_yummytacos'},
+  {name => 'ntcZ', network => '10.60.5.0/24', host => '10.60.5.0', host_prefix => '10.60.5.', token => '97e45639-4fef-4842-97bf-d72383435d23', logo => '/data/logos/05_ntcz.png'},
+  {name => 'N0N@me13', network => '10.60.3.0/24', host => '10.60.3.0', host_prefix => '10.60.3.', token => 'd0c02cca-0f43-4dd6-b8f6-339a103a5aa5', logo => '/data/logos/03_noname.jpg'},
+  {name => 'SFT0', network => '10.60.7.0/24', host => '10.60.7.0', host_prefix => '10.60.7.', token => '36a6a960-7e31-49bb-998f-889f664308e1', logo => '/data/logos/07_sft0'},
+  {name => 'Shadow Servants', network => '10.60.8.0/24', host => '10.60.8.0', host_prefix => '10.60.8.', token => '69067c97-cf8e-4558-8c31-25c26716510a', logo => '/data/logos/08_shadow-servants'},
+  {name => '[SPbCTF] Kappa', network => '10.60.9.0/24', host => '10.60.9.0', host_prefix => '10.60.9.', token => 'fa180564-bd29-4741-8239-68da5770a406', logo => '/data/logos/09_kappa.png'},
+  {name => 'Your mom\'s Cygnus', network => '10.60.10.0/24', host => '10.60.10.0', host_prefix => '10.60.10.', token => '8b886c43-5a4a-4b2c-976e-ed72b7fe41b4', logo => '/data/logos/10_cygnus.jpg'},
 
 services: |
   {name => 'medlink', path => 'checkers/medlink/checker.py', timeout => 30, host_suffix => '1'},
   {name => 'planner', path => 'checkers/planner/checker.py', timeout => 30, host_suffix => '2'},
   {name => 'qdb',     path => 'checkers/qdb/checker.py',     timeout => 30, host_suffix => '3'},
 
-#  {name => 'patrol',    path => 'checkers/patrol/checker.py',    timeout => 30, tcp_port => 23179},
-#  {name => 'radio',     path => 'checkers/radio/checker.py',     timeout => 30, tcp_port => 4553},

@@ -1,4 +1,7 @@
-﻿using medlink.Helpers;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using medlink.Helpers;
 using medlink.Storage.Models;
 
 namespace medlink.Storage
@@ -8,6 +11,5 @@ namespace medlink.Storage
         public BodyTelemetryStorage(ISerializer serializer, ISettings settings) : base(serializer, settings, settings.TelemetryFolder)
         {
         }
-
     }
 }

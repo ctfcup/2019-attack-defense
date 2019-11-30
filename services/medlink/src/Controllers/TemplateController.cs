@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using medlink.Helpers;
 using medlink.Storage;
@@ -28,7 +29,7 @@ namespace medlink.Controllers
                 var series = Request.Query["modelSeries"];
                 var revision = Request.Query["revision"];
                 var model = await _bodyModelsStorage.Get(series, revision);
-                return model.ReferenceValues.Keys;
+                return model.ReferenceValues.Keys.ToList();
             });
         }
     }
