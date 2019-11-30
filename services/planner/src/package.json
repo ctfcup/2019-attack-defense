@@ -9,6 +9,8 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "mysql2": "^2.0.0",
+    "node-fluent-orm": "^1.7.31",
+    "randomizerous": "^0.0.3",
     "swig": "^1.4.2"
   },
   "devDependencies": {},

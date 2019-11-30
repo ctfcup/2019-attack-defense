@@ -6,8 +6,4 @@ WORKDIR /app/
 
 RUN npm install --only=production
 
-COPY ./src/tmp_libs/nodeorm ./node_modules/nodeorm
-
-COPY ./src/tmp_libs/random ./node_modules/random
-
 ENTRYPOINT ./start.sh

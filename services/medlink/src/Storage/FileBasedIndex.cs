@@ -14,13 +14,18 @@ namespace medlink
     {
         private class IndexDTO
         {
+            public IndexDTO()
+            {
+                Index = new ConcurrentDictionary<TKey, Record<TValue>>();
+            }
+
             public ConcurrentDictionary<TKey, Record<TValue>> Index { get; set; }
             public int Id { get; set; }
         }
         
         private readonly IFileDumper _fileDumper;
-        private ConcurrentDictionary<TKey, Record<TValue>> _index;
-        private IReadOnlyDictionary<TKey, Record<TValue>> Index => _index;
+        private IndexDTO _index;
+        private IReadOnlyDictionary<TKey, Record<TValue>> Index => _index.Index;
 
         protected FileBasedIndex(IFileDumper fileDumper, ISettings settings, string folder)
         {
@@ -33,12 +38,12 @@ namespace medlink
                     await Task.Delay(settings.Ttl);
                     try
                     {
-                        var expired = _index.Where(pair => DateTime.UtcNow - pair.Value.Timestamp > settings.Ttl)
+                        var expired = Index.Where(pair => DateTime.UtcNow - pair.Value.Timestamp > settings.Ttl)
                             .Select(pair => pair.Key).ToList();
 
                         foreach (var key in expired)
                         {
-                            _index.TryRemove(key, out _);
+                            _index.Index.TryRemove(key, out _);
                         }
                     }
                     catch (Exception)
@@ -50,17 +55,18 @@ namespace medlink
 
         private void Initialize(string filePath)
         {
-            if (_fileDumper.TryFetch<IndexDTO>(filePath, out var dto))
+            try
             {
-                _index = dto.Index;
-                _id = dto.Id;
+                _index = _fileDumper.TryFetch<IndexDTO>(filePath, out var dto) ? dto : new IndexDTO();
+                _id = _index.Id;
+                
+                _fileDumper.Start(filePath, () => Index);
             }
-            else
+            catch (Exception e)
             {
-                _index = new ConcurrentDictionary<TKey, Record<TValue>>();
+                Console.WriteLine(e);
+                throw;
             }
-            
-            _fileDumper.Start(filePath, () => Index);
         }
 
         public void Add(TKey key, TValue value)
@@ -68,7 +74,7 @@ namespace medlink
             if (Index.ContainsKey(key))
                 throw new ArgumentException($"Conflict. {key} already exist");
                 
-            _index[key] = new Record<TValue>
+            _index.Index[key] = new Record<TValue>
             {
                 Timestamp = DateTime.UtcNow,
                 Value = value
@@ -81,7 +87,7 @@ namespace medlink
             if (!Index.ContainsKey(key))
                 throw new ArgumentException($"Not found. {key} not found in index");
 
-            return _index[key].Value;
+            return _index.Index[key].Value;
         }
 
         public bool Contains(TKey key)
@@ -102,7 +108,7 @@ namespace medlink
 
         public IEnumerator<KeyValuePair<TKey, Record<TValue>>> GetEnumerator()
         {
-            return _index.GetEnumerator();
+            return _index.Index.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

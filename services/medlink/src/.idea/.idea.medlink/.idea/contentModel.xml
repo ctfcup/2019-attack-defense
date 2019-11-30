@@ -99,8 +99,22 @@
         <e p="TemplateController.cs" t="Include" />
       </e>
       <e p="data" t="Include">
+        <e p="diagnostic" t="Include">
+          <e p="645c5b39-748a-43fd-bc2c-9a0632c0fb38" t="Include">
+            <e p="1" t="Include" />
+          </e>
+          <e p="d378aa86-dc22-4744-ad1e-8ac841a730c0" t="Include">
+            <e p="1" t="Include" />
+          </e>
+        </e>
         <e p="series" t="Include" />
         <e p="sessions" t="Include" />
+        <e p="telemetry" t="Include">
+          <e p="66760b66-6b58-4a91-a6b8-671a8170f071" t="Include" />
+          <e p="968e10f4-bf0c-4e14-8960-2d78fc3da1a6" t="Include" />
+        </e>
+        <e p="Users" t="Include" />
+        <e p="vendors" t="Include" />
       </e>
       <e p="HealthChecks" t="Include">
         <e p="HealthChecker.cs" t="Include" />
