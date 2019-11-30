@@ -38,7 +38,7 @@ def extend_flag_aes(flag):
 
 
 def extend_flag_xor(flag):
-    return 'Hey! This is Ur flag:{}'.format(flag)
+    return 'This is flag:{}. Be careful!'.format(flag)
 
 
 def generate_request():
