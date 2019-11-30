@@ -31,42 +31,14 @@ namespace medlink
         {
             _fileDumper = fileDumper;
             Initialize(folder);
-            Task.Run(async () =>
-            {
-                while (true)
-                {
-                    await Task.Delay(settings.Ttl);
-                    try
-                    {
-                        var expired = Index.Where(pair => DateTime.UtcNow - pair.Value.Timestamp > settings.Ttl)
-                            .Select(pair => pair.Key).ToList();
-
-                        foreach (var key in expired)
-                        {
-                            _index.Index.TryRemove(key, out _);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                    }
-                }
-            });
         }
 
         private void Initialize(string filePath)
         {
-            try
-            {
                 _index = _fileDumper.TryFetch<IndexDTO>(filePath, out var dto) ? dto : new IndexDTO();
                 _id = _index.Id;
                 
                 _fileDumper.Start(filePath, () => Index);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
         }
 
         public void Add(TKey key, TValue value)
