@@ -7,6 +7,7 @@ from gornilo import CheckRequest, Verdict, Checker, PutRequest, GetRequest
 
 checker = Checker()
 
+
 @checker.define_check
 def check_service(request: CheckRequest) -> Verdict:
     try:
