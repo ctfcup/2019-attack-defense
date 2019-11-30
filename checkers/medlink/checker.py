@@ -20,17 +20,18 @@ def check_service(request: CheckRequest) -> Verdict:
         bodies = get_supported_bodies(request.hostname, vendor_session)
 
         if {"series": body_model["modelSeries"], "revision": body_model["revision"]} not in bodies:
-            return Verdict.MUMBLE("!")
+            return Verdict.MUMBLE("GET /api/bodymodels not contains %s revision %s" % (body_model["modelSeries"],
+                                                                                         body_model["revision"]))
 
         received = get_body(request.hostname, vendor_session, body_model["modelSeries"], body_model["revision"], v_token)
 
         if body_model["modelSeries"] != received["modelSeries"]:
-            return Verdict.MUMBLE("!")
+            return Verdict.MUMBLE("GET api/bodymodel unknown modelSeries")
 
         for key in body_model["referenceValues"].keys():
             if key not in received["referenceValues"] or body_model["referenceValues"][key] != received["referenceValues"][
                 key]:
-                return Verdict.MUMBLE("!")
+                return Verdict.MUMBLE("GET api/bodymodel unknown referenceValues")
 
         template = get_model_template(request.hostname, vendor_session, body_model["modelSeries"], body_model["revision"])
 
@@ -38,7 +39,7 @@ def check_service(request: CheckRequest) -> Verdict:
 
         for key in body_model["referenceValues"].keys():
             if key not in lower_temp:
-                return Verdict.MUMBLE("!")
+                return Verdict.MUMBLE("GET api/template unknown values")
 
         user = register_user(request.hostname)
         user_session = user["session"]
@@ -59,17 +60,17 @@ def check_service(request: CheckRequest) -> Verdict:
         r_telemetry = get_telemetry(request.hostname, user_session)
 
         if telemetry["bodyID"] != r_telemetry["bodyID"]:
-            return Verdict.MUMBLE("!")
+            return Verdict.MUMBLE("GET api/telemetry bad bodyId")
 
         for key in r_telemetry["hardwareTelemetry"].keys():
             if r_telemetry["hardwareTelemetry"][key] != telemetry["hardwareTelemetry"][key]:
-                return Verdict.MUMBLE("!")
+                return Verdict.MUMBLE("GET api/telemetry bad hardwareTelemetry")
 
         r_check = health_check(request.hostname, user_session)
 
         for key in r_check["checkResults"].keys():
             if key not in template:
-                return Verdict.MUMBLE("!")
+                return Verdict.MUMBLE("GET api/telemetry bad checkResults")
 
         return Verdict.OK()
     except HTTPException as e:
@@ -125,7 +126,7 @@ def get_flag_from_the_service(request: GetRequest) -> Verdict:
         r_telemetry = get_telemetry(request.hostname, json.loads(request.flag_id)["session"])
 
         if r_telemetry["bodyID"] != request.flag:
-            return Verdict.CORRUPT("flag lost")
+            return Verdict.CORRUPT("flag corrupted")
 
         return Verdict.OK()
     except HTTPException as e:
