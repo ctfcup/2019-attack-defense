@@ -43,7 +43,7 @@ def check_service(request: CheckRequest) -> Verdict:
 
         user = register_user(request.hostname)
         user_session = user["session"]
-        user_model = random.choice(bodies)
+        user_model = {"series": body_model["modelSeries"], "revision": body_model["revision"]}
         template = get_model_template(request.hostname, user_session, user_model["series"], user_model["revision"])
 
         telemetry = {

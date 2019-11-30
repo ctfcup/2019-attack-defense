@@ -86,7 +86,7 @@ def get_model_template(addr, session, model, revision):
 
         i += 1
         print(r)
-        return Verdict.MUMBLE("Check api/template or cleanup folder and restart container :)")
+        raise HTTPException(Verdict.MUMBLE("Check api/template or cleanup folder and restart container :)"))
 
 
 def put_telemetry(addr, session, telemetry):
