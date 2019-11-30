@@ -3,8 +3,169 @@
   <component name="ContentModelStore">
     <e p="C:\Users\d.lukshto\.Rider2019.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\d.lukshto\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_medlink.-1411404798.00" t="ExcludeRecursive" />
-    <e p="C:\Users\d.lukshto\sources\ctfcup\ctfcup-2019-AD\services\medlink\src" t="IncludeFlat">
+    <e p="C:\Users\d.lukshto\sources\ctfcup\ctfcup-2019-AD\services\medlink\src" t="IncludeRecursive">
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="ClientApp" t="Include">
+        <e p=".gitignore" t="Include" />
+        <e p="node_modules\@babel\parser" t="IncludeRecursive" />
+        <e p="node_modules\@babel\types" t="IncludeRecursive" />
+        <e p="node_modules\@jest\console" t="IncludeRecursive" />
+        <e p="node_modules\@jest\fake-timers" t="IncludeRecursive" />
+        <e p="node_modules\@jest\source-map" t="IncludeRecursive" />
+        <e p="node_modules\@jest\test-result" t="IncludeRecursive" />
+        <e p="node_modules\@jest\types" t="IncludeRecursive" />
+        <e p="node_modules\@types" t="IncludeRecursive">
+          <e p="babel__generator" t="IncludeRecursive" />
+          <e p="babel__template" t="IncludeRecursive" />
+          <e p="babel__traverse" t="IncludeRecursive" />
+          <e p="istanbul-lib-coverage" t="IncludeRecursive" />
+          <e p="istanbul-lib-report" t="IncludeRecursive" />
+        </e>
+        <e p="node_modules\ajv" t="IncludeRecursive" />
+        <e p="node_modules\babel-eslint" t="IncludeRecursive" />
+        <e p="node_modules\babel-jest" t="IncludeRecursive" />
+        <e p="node_modules\bootstrap" t="IncludeRecursive" />
+        <e p="node_modules\chalk" t="IncludeRecursive" />
+        <e p="node_modules\cross-env" t="IncludeRecursive" />
+        <e p="node_modules\dotenv-expand" t="IncludeRecursive" />
+        <e p="node_modules\eslint" t="IncludeRecursive" />
+        <e p="node_modules\eslint-config-react-app" t="IncludeRecursive" />
+        <e p="node_modules\eslint-plugin-flowtype" t="IncludeRecursive" />
+        <e p="node_modules\eslint-plugin-import" t="IncludeRecursive" />
+        <e p="node_modules\eslint-plugin-jsx-a11y" t="IncludeRecursive" />
+        <e p="node_modules\eslint-plugin-react" t="IncludeRecursive" />
+        <e p="node_modules\fast-deep-equal" t="IncludeRecursive" />
+        <e p="node_modules\jest" t="IncludeRecursive" />
+        <e p="node_modules\jest-haste-map" t="IncludeRecursive" />
+        <e p="node_modules\jest-message-util" t="IncludeRecursive" />
+        <e p="node_modules\jest-mock" t="IncludeRecursive" />
+        <e p="node_modules\jest-resolve" t="IncludeRecursive" />
+        <e p="node_modules\jest-serializer" t="IncludeRecursive" />
+        <e p="node_modules\jest-util" t="IncludeRecursive" />
+        <e p="node_modules\jest-worker" t="IncludeRecursive" />
+        <e p="node_modules\jquery" t="IncludeRecursive" />
+        <e p="node_modules\js-cookie" t="IncludeRecursive" />
+        <e p="node_modules\merge" t="IncludeRecursive" />
+        <e p="node_modules\oidc-client" t="IncludeRecursive" />
+        <e p="node_modules\react" t="IncludeRecursive" />
+        <e p="node_modules\react-dom" t="IncludeRecursive" />
+        <e p="node_modules\react-router-bootstrap" t="IncludeRecursive" />
+        <e p="node_modules\react-router-dom" t="IncludeRecursive" />
+        <e p="node_modules\react-scripts" t="IncludeRecursive" />
+        <e p="node_modules\reactstrap" t="IncludeRecursive" />
+        <e p="node_modules\realpath-native" t="IncludeRecursive" />
+        <e p="node_modules\rimraf" t="IncludeRecursive" />
+        <e p="node_modules\source-map" t="IncludeRecursive" />
+        <e p="node_modules\uri-js" t="IncludeRecursive" />
+        <e p="node_modules\worker-farm" t="IncludeRecursive" />
+        <e p="package-lock.json" t="Include" />
+        <e p="package.json" t="Include" />
+        <e p="public" t="Include">
+          <e p="favicon.ico" t="Include" />
+          <e p="index.html" t="Include" />
+          <e p="manifest.json" t="Include" />
+        </e>
+        <e p="README.md" t="Include" />
+        <e p="src" t="Include">
+          <e p="App.js" t="Include" />
+          <e p="App.test.js" t="Include" />
+          <e p="components" t="Include">
+            <e p="BodyModel.js" t="Include" />
+            <e p="Home.js" t="Include" />
+            <e p="Layout.js" t="Include" />
+            <e p="Login.js" t="Include" />
+            <e p="Logout.js" t="Include" />
+            <e p="ModelInfo.js" t="Include" />
+            <e p="ModelsList.js" t="Include" />
+            <e p="NavMenu.css" t="Include" />
+            <e p="NavMenu.js" t="Include" />
+            <e p="Telemetry.js" t="Include" />
+            <e p="utils.js" t="Include" />
+          </e>
+          <e p="custom.css" t="Include" />
+          <e p="index.js" t="Include" />
+          <e p="registerServiceWorker.js" t="Include" />
+        </e>
+      </e>
+      <e p="Controllers" t="Include">
+        <e p="BodyModelController.cs" t="Include" />
+        <e p="BodyModelsController.cs" t="Include" />
+        <e p="HealthCheckController.cs" t="Include" />
+        <e p="SessionControllerBase.cs" t="Include" />
+        <e p="SignInController.cs" t="Include" />
+        <e p="TelemetryController.cs" t="Include" />
+        <e p="TemplateController.cs" t="Include" />
+      </e>
+      <e p="HealthChecks" t="Include">
+        <e p="HealthChecker.cs" t="Include" />
+        <e p="IHealthChecker.cs" t="Include" />
+      </e>
+      <e p="Helpers" t="Include">
+        <e p="Extensions.cs" t="Include" />
+        <e p="ISerializer.cs" t="Include" />
+        <e p="ISettings.cs" t="Include" />
+        <e p="Serializer.cs" t="Include" />
+        <e p="Settings.cs" t="Include" />
+        <e p="Utils.cs" t="Include" />
+      </e>
+      <e p="ISessionSource.cs" t="Include" />
+      <e p="medlink.csproj" t="IncludeRecursive" />
       <e p="medlink.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.0" t="Include">
+            <e p="medlink.AssemblyInfo.cs" t="Include" />
+            <e p="medlink.RazorAssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Pages" t="Include">
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="Error.cshtml" t="Include" />
+        <e p="Error.cshtml.cs" t="Include" />
+      </e>
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="SessionSource.cs" t="Include" />
+      <e p="Startup.cs" t="Include" />
+      <e p="Storage" t="Include">
+        <e p="BaseStorage.cs" t="Include" />
+        <e p="BodyModelsStorage.cs" t="Include" />
+        <e p="BodyTelemetryStorage.cs" t="Include" />
+        <e p="FileBasedIndex.cs" t="Include" />
+        <e p="FileDumper.cs" t="Include" />
+        <e p="Indices" t="Include">
+          <e p="Interfaces" t="Include">
+            <e p="IPasswords.cs" t="Include" />
+            <e p="ISessions.cs" t="Include" />
+            <e p="IVendorInfos.cs" t="Include" />
+          </e>
+          <e p="PasswordsByUsers.cs" t="Include" />
+          <e p="Sessions.cs" t="Include" />
+          <e p="VendorInfos.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IBaseStorage.cs" t="Include" />
+          <e p="IBodyModelsStorage.cs" t="Include" />
+          <e p="IBodyTelemetryStorage.cs" t="Include" />
+          <e p="IFileBasedIndex.cs" t="Include" />
+          <e p="IFileDumper.cs" t="Include" />
+          <e p="ISeriesIndex.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="BodyIDDTO.cs" t="Include" />
+          <e p="BodyModelInfo.cs" t="Include" />
+          <e p="BodyTelemetry.cs" t="Include" />
+          <e p="HealthReport.cs" t="Include" />
+          <e p="VendorInfo.cs" t="Include" />
+        </e>
+        <e p="SeriesIndex.cs" t="Include" />
+      </e>
     </e>
   </component>
 </project>

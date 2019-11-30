@@ -1,4 +1,4 @@
-- hosts: checkers
+- hosts: checkers, master
   tasks:
   - name: sync catalog
     synchronize: src="../checkers" dest="{{cs_dir}}"

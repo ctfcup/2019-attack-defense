@@ -14,7 +14,7 @@ namespace medlink.Controllers
         private readonly IHealthChecker _healthChecker;
         private readonly IBodyTelemetryStorage _telemetryStorage;
 
-        public HealthCheckController(ISettings settings, IPasswords passwords, ISessions sessions,
+        public HealthCheckController(ISettings settings, ISessions sessions,
             IBodyTelemetryStorage telemetryStorage, IHealthChecker healthChecker) : base(settings,
             sessions)
         {

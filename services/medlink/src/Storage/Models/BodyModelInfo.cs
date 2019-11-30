@@ -2,7 +2,7 @@
 
 namespace medlink.Storage
 {
-    public class BodyDiagnosticInfo
+    public class BodyModelInfo
     {
         public string ModelSeries { get; set; }
         public string Revision { get; set; }

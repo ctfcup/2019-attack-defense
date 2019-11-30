@@ -22,25 +22,25 @@ namespace medlink.HealthChecks
                 CheckResults = new Dictionary<string, string>()
             };
 
-            var path = PathHelper.BodyModelPath(bodyTelemetry.BodyModelSeries, bodyTelemetry.BodyRevision);
-            if (!_bodyModelsStorage.Exist(path))
+            if (!_bodyModelsStorage.Contains(bodyTelemetry.BodyModelSeries, bodyTelemetry.BodyRevision))
             {
-                return new HealthReport()
+                return new HealthReport
                 {
                     Error = "Unknown body type"
                 };
             }
 
-            var diagnosticInfo = await _bodyModelsStorage.Get(path);
+            var bodyDiagnosticInfo =
+                await _bodyModelsStorage.Get(bodyTelemetry.BodyModelSeries, bodyTelemetry.BodyRevision);
 
 
-            foreach (var (name, refValue) in diagnosticInfo.ReferenceValues)
+            foreach (var (name, refValue) in bodyDiagnosticInfo.ReferenceValues)
                 if (bodyTelemetry.HardwareTelemetry.ContainsKey(name))
                 {
                     var value = bodyTelemetry.HardwareTelemetry[name];
                     healthReport.CheckResults[name] = value > refValue
-                        ? $"{value} >  |Refs {refValue}"
-                        : $"{value} <= |Refs {refValue}";
+                        ? $"ERROR! | {value} > {refValue}"
+                        : $"OK | {value} <= {refValue}";
                 }
                 else
                 {
