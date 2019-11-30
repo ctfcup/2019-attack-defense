@@ -52,7 +52,7 @@ namespace medlink
             builder.RegisterType<FileDumper>().As<IFileDumper>().SingleInstance();
             builder.RegisterType<BodyTelemetryStorage>().As<IBodyTelemetryStorage>().SingleInstance();
             builder.RegisterType<HealthChecker>().As<IHealthChecker>().SingleInstance();
-            builder.RegisterType<BodyDiagnosticStorage>().As<IBodyModelsStorage>().SingleInstance();
+            builder.RegisterType<BodyModelsStorage>().As<IBodyModelsStorage>().SingleInstance();
             builder.RegisterType<VendorInfos>().As<IVendorInfos>().SingleInstance();
             builder.RegisterType<SeriesIndex>().As<ISeriesIndex>().SingleInstance();
         }

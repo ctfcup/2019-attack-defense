@@ -1,6 +1,6 @@
 import aioredis
 
-EXPIRE_TIME = 20*60*1000
+EXPIRE_TIME = 15*60*1000
 
 class DB:
     def __init__(self):

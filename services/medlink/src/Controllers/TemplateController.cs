@@ -27,14 +27,9 @@ namespace medlink.Controllers
             {
                 var series = Request.Query["modelSeries"];
                 var revision = Request.Query["revision"];
-                var model = await _bodyModelsStorage.Get(GetPath(series, revision));
+                var model = await _bodyModelsStorage.Get(series, revision);
                 return model.ReferenceValues.Keys;
             });
-        }
-        
-        private static string GetPath(string infoModelSeries, string infoRevision)
-        {
-            return Path.Combine(infoModelSeries, infoRevision);
         }
     }
 }
