@@ -78,6 +78,14 @@
 {% block additional_js %}
     <script>
         function getTasks(w=moment(new Date(), 'DD.MM.YYYY').week(), y=moment(new Date(), 'DD.MM.YYYY').year()) {
+            let hours = [];
+            for (let hour=6; hour < 23; hour+=2)
+                hours.push(`${String(hour).padStart(2,"0")}:00`);
+            let week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            for (let h in hours)
+                for (let d in week)
+                    $("[name='"+hours[h]+"'] #"+week[d]+" div").html('&nbsp;');
+                    
             $.ajax({
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',

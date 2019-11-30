@@ -17,6 +17,7 @@ $(document).ready(function() {
         firstDate = moment(value, "DD.MM.YYYY").day(1).format("DD.MM.YYYY");
         lastDate =  moment(value, "DD.MM.YYYY").day(7).format("DD.MM.YYYY");
         $("#weeklyDatePicker").val(firstDate + " - " + lastDate);
+        getTasks(moment(value, 'DD.MM.YYYY').week(), moment(value, 'DD.MM.YYYY').year());
     });
     
     $('#weeklyDatePicker').on('dp.show', function (e) {
@@ -146,7 +147,7 @@ $(document).ready(function() {
                     "description": $("#add-task-form textarea").val()
                 })
         })
-        .fail(function(xhr) { location.reload(); )
+        .fail(function(xhr) { location.reload(); })
     });
     
 });
