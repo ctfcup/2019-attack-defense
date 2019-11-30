@@ -33,8 +33,13 @@ def send(bits, gates):
     return qubits
 
 
-def extend_flag(flag):
+def extend_flag_aes(flag):
     return 'This is Ur flag:{}. Do not lose it!'.format(flag)
+
+
+def extend_flag_xor(flag):
+    return 'Hey! This is Ur flag:{}'.format(flag)
+
 
 def generate_request():
     request = request_pb2.Request()
@@ -128,7 +133,7 @@ async def check_service(request: CheckRequest) -> Verdict:
 @checker.define_put(vuln_num=1, vuln_rate=1)
 async def put_flag_aes(request: PutRequest) -> Verdict:
     algo = utils_pb2.Algo.AES
-    login, msg = os.urandom(12), extend_flag(request.flag).encode()
+    login, msg = os.urandom(12), extend_flag_aes(request.flag).encode()
 
     try:
         key, decrypted_msg = await set_msg(login, msg, algo, request.hostname)
@@ -163,7 +168,7 @@ async def get_flag_aes(request: GetRequest) -> Verdict:
         print(traceback.format_exc())
         return Verdict.DOWN('DOWN')
 
-    if flag != extend_flag(request.flag).encode():
+    if flag != extend_flag_aes(request.flag).encode():
         return Verdict.CORRUPT("Wrong flag!")
     return Verdict.OK()
 
@@ -171,7 +176,7 @@ async def get_flag_aes(request: GetRequest) -> Verdict:
 @checker.define_put(vuln_num=2, vuln_rate=1)
 async def put_flag_xor(request: PutRequest) -> Verdict:
     algo = utils_pb2.Algo.XOR
-    login, msg = os.urandom(12), extend_flag(request.flag).encode()
+    login, msg = os.urandom(12), extend_flag_xor(request.flag).encode()
 
     try:
         key, decrypted_msg = await set_msg(login, msg, algo, request.hostname)
@@ -211,7 +216,7 @@ async def get_flag_xor(request: GetRequest) -> Verdict:
         print(traceback.format_exc())
         return Verdict.DOWN('DOWN')
 
-    if flag != extend_flag(request.flag).encode():
+    if flag != extend_flag_xor(request.flag).encode():
         return Verdict.CORRUPT("Wrong flag")
     return Verdict.OK()
 
