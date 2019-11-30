@@ -83,6 +83,10 @@ def put_flag_into_the_service(request: PutRequest) -> Verdict:
         user = register_user(request.hostname)
         user_session = user["session"]
         bodies = get_supported_bodies(request.hostname, user_session)
+
+        if len(bodies) == 0:
+            return Verdict.MUMBLE("No bodies supported")
+
         user_model = random.choice(bodies)
         template = get_model_template(request.hostname, user_session, user_model["series"], user_model["revision"])
 
