@@ -4,4 +4,5 @@ The contest is driven by classic rules (Attack-Defense [CTF](https://en.wikipedi
 
 CTF Cup 2019 (A/D part) was held on November 30, 2019.  
 Спонсором этапа Attack-defence выступило ПАО "Сбербанк"
+
 Copyright (C) 2019 [HackerDom](http://hackerdom.ru)
